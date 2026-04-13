@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36915.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestGameDetective.Application", "QuestGameDetective.Application\QuestGameDetective.Application.csproj", "{853FAAB4-4770-490B-B08B-43636BA74C29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestGameDetective.Domain", "QuestGameDetective.Domain\QuestGameDetective.Domain.csproj", "{3204F3D7-ECCD-46DB-8969-272FA8650ABE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestGameDetective.Infrastructure", "QuestGameDetective.Infrastructure\QuestGameDetective.Infrastructure.csproj", "{C104AAB9-CB5D-4E63-ABEC-9B4C17B705FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestGameDetective.API", "QuestGameDetective.API\QuestGameDetective.API.csproj", "{1774402D-4229-4EAB-A88E-59A1EC535827}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{853FAAB4-4770-490B-B08B-43636BA74C29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{853FAAB4-4770-490B-B08B-43636BA74C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{853FAAB4-4770-490B-B08B-43636BA74C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{853FAAB4-4770-490B-B08B-43636BA74C29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3204F3D7-ECCD-46DB-8969-272FA8650ABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3204F3D7-ECCD-46DB-8969-272FA8650ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3204F3D7-ECCD-46DB-8969-272FA8650ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3204F3D7-ECCD-46DB-8969-272FA8650ABE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C104AAB9-CB5D-4E63-ABEC-9B4C17B705FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C104AAB9-CB5D-4E63-ABEC-9B4C17B705FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C104AAB9-CB5D-4E63-ABEC-9B4C17B705FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C104AAB9-CB5D-4E63-ABEC-9B4C17B705FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1774402D-4229-4EAB-A88E-59A1EC535827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1774402D-4229-4EAB-A88E-59A1EC535827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1774402D-4229-4EAB-A88E-59A1EC535827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1774402D-4229-4EAB-A88E-59A1EC535827}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {87FCF272-B9E4-4E0E-A43D-E52476539DBF}
+	EndGlobalSection
+EndGlobal
