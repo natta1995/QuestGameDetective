@@ -1,0 +1,11 @@
+﻿namespace QuestGameDetective.API.Models
+{
+    public class Suspect
+    {
+        public Guid Id { get; set; } = Guid.NewGuid();
+
+        public string Name { get; set; } = "";
+        public string Label { get; set; } = "";
+        public string Statement { get; set; } = "";
+    }
+}

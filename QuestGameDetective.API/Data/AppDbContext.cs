@@ -10,5 +10,9 @@ namespace QuestGameDetective.API.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
+
+        public DbSet<MurderCase> MurderCases { get; set; }
+        public DbSet<Quest> Quests { get; set; }
+        public DbSet<Suspect> Suspects { get; set; }
     }
 }
