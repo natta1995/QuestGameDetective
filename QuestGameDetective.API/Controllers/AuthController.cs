@@ -2,18 +2,22 @@
 using Microsoft.AspNetCore.Mvc;
 using QuestGameDetective.API.Models;
 using QuestGameDetective.API.Dtos;
+using QuestGameDetective.API.Services;
 
 namespace QuestGameDetective.API.Controllers
 {
+
     [ApiController]
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly TokenService _tokenService;
 
-        public AuthController(UserManager<ApplicationUser> userManager)
+        public AuthController(UserManager<ApplicationUser> userManager, TokenService tokenService)
         {
             _userManager = userManager;
+            _tokenService = tokenService;
         }
 
         [HttpPost("register")]
@@ -46,7 +50,9 @@ namespace QuestGameDetective.API.Controllers
             if (!validPassword)
                 return Unauthorized("Invalid credentials");
 
-            return Ok("Login successful");
+            var token = _tokenService.CreateToken(user);
+
+            return Ok(token);
         }
     }
 
