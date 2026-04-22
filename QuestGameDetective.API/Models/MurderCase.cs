@@ -21,6 +21,6 @@ namespace QuestGameDetective.API.Models
         public List<Suspect> Suspects { get; set; } = new();
 
         // Vänta med denna om den ställer till det i EF
-        // public List<string> Clues { get; set; } = new();
+        //public List<string> Clues { get; set; } = new();
     }
 }

@@ -6,22 +6,18 @@ namespace QuestGameDetective.API.Models
     {
         public Guid Id { get; set; } = Guid.NewGuid();
 
-        public string Title { get; set; } = "";
-        public string Description { get; set; } = "";
+        public string UserId { get; set; } = "";
+        public Guid MurderCaseId { get; set; }
 
-        public string UserId { get; set; } = ""; // koppling till Identity user
-
-        public Guid MurderCaseId { get; set; } // koppling till case
-
-        public QuestStatus Status { get; set; } = QuestStatus.Available;
+        public QuestStatus Status { get; set; } = QuestStatus.Accepted;
         public QuestResult Result { get; set; } = QuestResult.None;
 
-        public DateTime? AcceptedAt { get; set; }
+        public DateTime AcceptedAt { get; set; } = DateTime.UtcNow;
         public DateTime? ExpiresAt { get; set; }
 
         public bool Reminder20hSent { get; set; } = false;
         public bool Reminder1hSent { get; set; } = false;
 
-        public bool IsExpired => ExpiresAt.HasValue && DateTime.Now > ExpiresAt.Value;
+        public bool IsExpired => ExpiresAt.HasValue && DateTime.UtcNow > ExpiresAt.Value;
     }
 }

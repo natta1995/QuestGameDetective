@@ -2,7 +2,6 @@
 {
     public enum QuestStatus
     {
-        Available,
         Accepted,
         Completed
     }

@@ -12,8 +12,8 @@ using QuestGameDetective.API.Data;
 namespace QuestGameDetective.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260421095620_SeedMurderCases")]
-    partial class SeedMurderCases
+    [Migration("20260421121440_InitialClean")]
+    partial class InitialClean
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -233,10 +233,6 @@ namespace QuestGameDetective.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.PrimitiveCollection<string>("Clues")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CrimeSceneDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -274,6 +270,50 @@ namespace QuestGameDetective.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MurderCases");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("11111111-1111-1111-1111-111111111111"),
+                            CauseOfDeath = "A gunshot wound to the head",
+                            CrimeSceneDescription = "The library is panelled in dark oak, its tall bookshelves stretching up toward the ceiling.\nA dying fire crackles faintly in the hearth. Sir Reginald sits slumped in his leather armchair,\na revolver near his right hand and a half-finished glass of whisky on the side table.\nRain patters rhythmically against the tall window overlooking the quiet street.",
+                            KillerIndex = 1,
+                            Place = "His private library on Kensington Row",
+                            Priority = 1,
+                            ShortSummary = "A wealthy gentleman is found dead in his private library. Four individuals were inside the house that evening.",
+                            SolutionText = "The revolver in the wrong hand makes suicide unlikely from the start. Several suspects tell small lies, but only one has a true motive.\n\nEdmund's story about writing letters collapses under scrutiny; he cannot recall simple details, and no such letter is found.\nFaced with the inconsistencies, he finally confesses — he shot Sir Reginald in the library to secure his inheritance.",
+                            Title = "The Library Murder on Kensington Row",
+                            Victim = "Sir Reginald Blackwood",
+                            Weapon = "A small revolver found near his right hand."
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                            CauseOfDeath = "Poisoning",
+                            CrimeSceneDescription = "Thunder shakes the old manor as candles flicker along the long dining hall.\nLord Ashcroft lies collapsed at the head of the table, his untouched dessert before him.\nRain lashes against the tall windows, and the storm has knocked out the telephone lines.\nThe guests — all visibly shaken — stand gathered near the fireplace, each avoiding the others’ gaze.",
+                            KillerIndex = 0,
+                            Place = "The dining hall of Ashcroft Manor",
+                            Priority = 2,
+                            ShortSummary = "During a stormy night at the remote Ashcroft Manor, the master of the house dies during his own dinner party. Four guests remain under suspicion.",
+                            SolutionText = "The wet hem of Lady Ashcroft’s dress contradicts her claim of staying inside the dining hall.\nShe slipped out during a clap of thunder, mixed arsenic into her husband’s wine, and returned unnoticed.\nDr. Graves could not have poisoned the wine from the study, and the Colonel and Miss Whitfield had no opportunity.\nWith mounting evidence and no alibi left standing, Lady Ashcroft ultimately confesses to the crime.",
+                            Title = "The Midnight Tragedy at Ashcroft Manor",
+                            Victim = "Lord Percival Ashcroft",
+                            Weapon = "A crystal glass containing traces of arsenic"
+                        },
+                        new
+                        {
+                            Id = new Guid("33333333-3333-3333-3333-333333333333"),
+                            CauseOfDeath = "Blunt force trauma",
+                            CrimeSceneDescription = "The workshop is cluttered with intricate devices, the air filled with the steady ticking of dozens of clocks.\nTobias Wren lies face-down beside his workbench, a large brass gear stained with blood nearby.\nShards of glass cover the floor, and a single pocket watch ticks loudly from the victim’s hand.",
+                            KillerIndex = 3,
+                            Place = "His clockmaking shop in Covent Garden",
+                            Priority = 0,
+                            ShortSummary = "A famous clockmaker is found dead in his workshop among shattered gears and ticking mechanisms. Four individuals had business with him that evening.",
+                            SolutionText = "The workshop door being locked suggests the killer exited through the back window.\nMrs. Finch insisted she was not present, yet brass dust on her gloves proves she had been inside the workshop.\nHer motive — unpaid rent — is the strongest among the suspects, and the tampered pocket watch was staged to mimic a struggle.\nConfronted with the inconsistencies, Mrs. Finch breaks down and confesses.",
+                            Title = "The Clockmaker’s Last Hour in Covent Garden",
+                            Victim = "Mr. Tobias Wren",
+                            Weapon = "A heavy brass gear found on the floor beside the body"
+                        });
                 });
 
             modelBuilder.Entity("QuestGameDetective.API.Models.Quest", b =>
@@ -330,7 +370,7 @@ namespace QuestGameDetective.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("MurderCaseId")
+                    b.Property<Guid>("MurderCaseId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -346,6 +386,104 @@ namespace QuestGameDetective.API.Migrations
                     b.HasIndex("MurderCaseId");
 
                     b.ToTable("Suspects");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("aaaaaaaa-1111-1111-1111-111111111111"),
+                            Label = "the butler",
+                            MurderCaseId = new Guid("11111111-1111-1111-1111-111111111111"),
+                            Name = "Mr. Hargreaves",
+                            Statement = "\"I was in the kitchen, sir, listening to the wireless when the shot rang out — or so they tell me. I heard nothing at all.\""
+                        },
+                        new
+                        {
+                            Id = new Guid("aaaaaaaa-2222-2222-2222-222222222222"),
+                            Label = "the nephew",
+                            MurderCaseId = new Guid("11111111-1111-1111-1111-111111111111"),
+                            Name = "Edmund Blackwood",
+                            Statement = "\"I spent the evening in the guest room, writing letters. I never left the room, I assure you.\""
+                        },
+                        new
+                        {
+                            Id = new Guid("aaaaaaaa-3333-3333-3333-333333333333"),
+                            Label = "the housekeeper",
+                            MurderCaseId = new Guid("11111111-1111-1111-1111-111111111111"),
+                            Name = "Mrs. Beatrice Bloom",
+                            Statement = "\"I was polishing the silver in the dining room. I did not go near the library, not once.\""
+                        },
+                        new
+                        {
+                            Id = new Guid("aaaaaaaa-4444-4444-4444-444444444444"),
+                            Label = "the neighbour",
+                            MurderCaseId = new Guid("11111111-1111-1111-1111-111111111111"),
+                            Name = "Mrs. Evelyn Ashdown",
+                            Statement = "\"I left before the rain began. I heard nothing unusual, and the gentleman was quite well when I saw him last.\""
+                        },
+                        new
+                        {
+                            Id = new Guid("bbbbbbbb-1111-1111-1111-111111111111"),
+                            Label = "the widow",
+                            MurderCaseId = new Guid("22222222-2222-2222-2222-222222222222"),
+                            Name = "Lady Imogen Ashcroft",
+                            Statement = "\"Percival was in good health, I assure you. I only poured his wine, as I always do.\""
+                        },
+                        new
+                        {
+                            Id = new Guid("bbbbbbbb-2222-2222-2222-222222222222"),
+                            Label = "the family physician",
+                            MurderCaseId = new Guid("22222222-2222-2222-2222-222222222222"),
+                            Name = "Dr. Lionel Graves",
+                            Statement = "\"I stepped out to the study to fetch my medical kit. I returned only when I heard Lady Ashcroft scream.\""
+                        },
+                        new
+                        {
+                            Id = new Guid("bbbbbbbb-3333-3333-3333-333333333333"),
+                            Label = "the old friend",
+                            MurderCaseId = new Guid("22222222-2222-2222-2222-222222222222"),
+                            Name = "Colonel Barnaby Holt",
+                            Statement = "\"I was smoking in the conservatory. The thunder was so loud I heard nothing of the commotion inside.\""
+                        },
+                        new
+                        {
+                            Id = new Guid("bbbbbbbb-4444-4444-4444-444444444444"),
+                            Label = "the governess",
+                            MurderCaseId = new Guid("22222222-2222-2222-2222-222222222222"),
+                            Name = "Miss Clara Whitfield",
+                            Statement = "\"I was preparing the children for bed and only came down when the staff called for me.\""
+                        },
+                        new
+                        {
+                            Id = new Guid("cccccccc-1111-1111-1111-111111111111"),
+                            Label = "the client",
+                            MurderCaseId = new Guid("33333333-3333-3333-3333-333333333333"),
+                            Name = "Madame Valérie DuPont",
+                            Statement = "\"I came to collect my repaired watch, but Mr. Wren told me it wasn’t ready. I left immediately.\""
+                        },
+                        new
+                        {
+                            Id = new Guid("cccccccc-2222-2222-2222-222222222222"),
+                            Label = "the apprentice",
+                            MurderCaseId = new Guid("33333333-3333-3333-3333-333333333333"),
+                            Name = "Arthur Bellamy",
+                            Statement = "\"I stepped out for a smoke. When I returned, the door was locked from the inside.\""
+                        },
+                        new
+                        {
+                            Id = new Guid("cccccccc-3333-3333-3333-333333333333"),
+                            Label = "the officer",
+                            MurderCaseId = new Guid("33333333-3333-3333-3333-333333333333"),
+                            Name = "Inspector Harold Briggs",
+                            Statement = "\"I arrived to question Wren regarding a stolen heirloom. When I knocked, no one answered.\""
+                        },
+                        new
+                        {
+                            Id = new Guid("cccccccc-4444-4444-4444-444444444444"),
+                            Label = "the landlord",
+                            MurderCaseId = new Guid("33333333-3333-3333-3333-333333333333"),
+                            Name = "Mrs. Adelaide Finch",
+                            Statement = "\"He owed me two months’ rent, but I did not come here tonight. I was visiting my sister.\""
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -403,7 +541,9 @@ namespace QuestGameDetective.API.Migrations
                 {
                     b.HasOne("QuestGameDetective.API.Models.MurderCase", null)
                         .WithMany("Suspects")
-                        .HasForeignKey("MurderCaseId");
+                        .HasForeignKey("MurderCaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("QuestGameDetective.API.Models.MurderCase", b =>
