@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using QuestGameDetective.API.Data;
 using QuestGameDetective.API.Models;
 using QuestGameDetective.API.Models.Enums;
+using QuestGameDetective.API.Dtos;
 
 namespace QuestGameDetective.API.Controllers
 {
@@ -84,6 +85,36 @@ namespace QuestGameDetective.API.Controllers
                 .ToListAsync();
 
             return Ok(myQuests);
+        }
+
+        [HttpPut("{id}/result")]
+        public async Task<IActionResult> UpdateQuestResult(Guid id, [FromBody] string result)
+        {
+            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+                return Unauthorized();
+
+            var quest = await _context.Quests
+                .FirstOrDefaultAsync(q => q.Id == id && q.UserId == userId);
+
+            if (quest == null)
+                return NotFound("Quest not found.");
+
+            if (quest.Result != QuestResult.None)
+                return BadRequest("Quest result is already set.");
+
+            if (!Enum.TryParse<QuestResult>(result, true, out var newResult))
+                return BadRequest("Invalid result.");
+
+            if (newResult == QuestResult.None)
+                return BadRequest("Result cannot be None.");
+
+            quest.Result = newResult;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(quest);
         }
     }
 }
