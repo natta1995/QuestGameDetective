@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using QuestGameDetective.API.Models;
-using QuestGameDetective.API.Dtos;
 using QuestGameDetective.API.Services;
+using QuestGameDetective.API.Dtos.Auth;
 
 namespace QuestGameDetective.API.Controllers
 {
