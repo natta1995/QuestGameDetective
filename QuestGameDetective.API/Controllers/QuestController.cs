@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using QuestGameDetective.API.Data;
 using QuestGameDetective.API.Models;
 using QuestGameDetective.API.Models.Enums;
-using QuestGameDetective.API.Dtos;
+using QuestGameDetective.API.Dtos.Quest;
 
 namespace QuestGameDetective.API.Controllers
 {
@@ -80,11 +80,19 @@ namespace QuestGameDetective.API.Controllers
                 return Unauthorized("User id not found in token.");
             }
 
-            var myQuests = await _context.Quests
-                .Where(q => q.UserId == userId)
-                .ToListAsync();
+                    var myQuests = await _context.Quests
+             .Where(q => q.UserId == userId)
+             .Select(q => new QuestReadDto
+             {
+                 Id = q.Id,
+                 Status = q.Status,
+                 Result = q.Result,
+                 AcceptedAt = q.AcceptedAt,
+                 //CompletedAt = q.CompletedAt
+             })
+             .ToListAsync();
 
-            return Ok(myQuests);
+                    return Ok(myQuests);
         }
 
         [HttpPut("{id}/result")]
