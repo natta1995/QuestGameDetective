@@ -61,11 +61,18 @@ namespace QuestGameDetective.API.Controllers
             _context.Quests.Add(quest);
             await _context.SaveChangesAsync();
 
-            return Ok(new
+            var dto = new QuestAcceptedDto
             {
-                message = "Quest accepted.",
-                quest
-            });
+                Message = "Quest accepted.",
+                QuestId = quest.Id,
+                MurderCaseId = quest.MurderCaseId,
+                Status = quest.Status,
+                Result = quest.Result,
+                AcceptedAt = quest.AcceptedAt,
+                ExpiresAt = quest.ExpiresAt
+            };
+
+            return Ok(dto);
         }
 
         [HttpGet("mine")]
@@ -96,7 +103,7 @@ namespace QuestGameDetective.API.Controllers
         }
 
         [HttpPut("{id}/result")]
-        public async Task<IActionResult> UpdateQuestResult(Guid id, [FromBody] string result)
+        public async Task<IActionResult> UpdateQuestResult(Guid id, [FromBody] UpdateQuestResultDto dto)
         {
             var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
@@ -112,7 +119,7 @@ namespace QuestGameDetective.API.Controllers
             if (quest.Result != QuestResult.None)
                 return BadRequest("Quest result is already set.");
 
-            if (!Enum.TryParse<QuestResult>(result, true, out var newResult))
+            if (!Enum.TryParse<QuestResult>(dto.Result, true, out var newResult))
                 return BadRequest("Invalid result.");
 
             if (newResult == QuestResult.None)
@@ -122,7 +129,15 @@ namespace QuestGameDetective.API.Controllers
 
             await _context.SaveChangesAsync();
 
-            return Ok(quest);
+            var resultDto = new QuestReadDto
+            {
+                Id = quest.Id,
+                Status = quest.Status,
+                Result = quest.Result,
+                AcceptedAt = quest.AcceptedAt
+            };
+
+            return Ok(resultDto);
         }
     }
 }
