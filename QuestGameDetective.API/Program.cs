@@ -58,6 +58,7 @@ namespace QuestGameDetective.API
             {
                 var services = scope.ServiceProvider;
                 await SeedRoles.SeedAsync(services);
+                await SeedUsers.SeedAsync(services);
             }
 
             app.UseHttpsRedirection();
