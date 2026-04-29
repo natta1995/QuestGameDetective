@@ -52,7 +52,7 @@ namespace QuestGameDetective.API.Controllers
             if (!validPassword)
                 return Unauthorized("Invalid credentials");
 
-            var token = _tokenService.CreateToken(user);
+            var token = await _tokenService.CreateToken(user);
 
             return Ok(token);
         }

@@ -20,7 +20,7 @@ namespace QuestGameDetective.API.Data
                     Email = adminEmail
                 };
 
-                var result = await userManager.CreateAsync(admin, "Admin123!");
+                var result = await userManager.CreateAsync(admin, "Admin123!"); //Password
 
                 if (result.Succeeded)
                 {
@@ -36,7 +36,7 @@ namespace QuestGameDetective.API.Data
                     Email = userEmail
                 };
 
-                var result = await userManager.CreateAsync(user, "User123!");
+                var result = await userManager.CreateAsync(user, "User123!"); // Password
 
                 if (result.Succeeded)
                 {
