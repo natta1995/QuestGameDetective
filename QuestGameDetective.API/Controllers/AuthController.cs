@@ -25,7 +25,7 @@ namespace QuestGameDetective.API.Controllers
         {
             var user = new ApplicationUser
             {
-                UserName = dto.Email,
+                UserName = dto.UserName,
                 Email = dto.Email
             };
 
@@ -33,6 +33,8 @@ namespace QuestGameDetective.API.Controllers
 
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
+
+            await _userManager.AddToRoleAsync(user, "User");
 
             return Ok("User created");
         }
