@@ -1,4 +1,4 @@
-﻿namespace QuestGameDetective.API.Dtos.Quest
+﻿namespace QuestGameDetective.Application.Dtos.Quests
 {
     public class UpdateQuestResultDto
     {

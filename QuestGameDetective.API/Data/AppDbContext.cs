@@ -1,8 +1,10 @@
 ﻿
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using QuestGameDetective.API.Models;
+using QuestGameDetective.Domain.Entities;
 using QuestGameDetective.API.Data.Seed;
+
+using QuestGameDetective.API.Models; // Sålänge
 
 namespace QuestGameDetective.API.Data
 {

@@ -1,5 +1,7 @@
-﻿using QuestGameDetective.API.Models;
-using QuestGameDetective.API.Models.Enums;
+﻿using QuestGameDetective.Domain.Entities;
+using QuestGameDetective.Domain.Enums;
+
+
 
 namespace QuestGameDetective.API.Data.Seed
 {

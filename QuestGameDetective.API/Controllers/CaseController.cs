@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuestGameDetective.API.Data;
-using QuestGameDetective.API.Dtos.Cases;
+using QuestGameDetective.Application.Dtos.Cases;
 
 namespace QuestGameDetective.API.Controllers
 {

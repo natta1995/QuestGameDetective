@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuestGameDetective.API.Data;
-using QuestGameDetective.API.Models;
-using QuestGameDetective.API.Models.Enums;
-using QuestGameDetective.API.Dtos.Quest;
+using QuestGameDetective.Domain.Entities;
+using QuestGameDetective.Domain.Enums;
+using QuestGameDetective.Application.Dtos.Quests;
 
 namespace QuestGameDetective.API.Controllers
 {

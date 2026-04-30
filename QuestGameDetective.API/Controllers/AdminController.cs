@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuestGameDetective.API.Models;
-using QuestGameDetective.API.Dtos.Users;
+using QuestGameDetective.Application.Dtos.Users;
 
 namespace QuestGameDetective.API.Controllers
 {
