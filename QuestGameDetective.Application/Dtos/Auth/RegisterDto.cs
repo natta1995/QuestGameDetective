@@ -1,4 +1,4 @@
-﻿namespace QuestGameDetective.API.Dtos.Auth
+﻿namespace QuestGameDetective.Application.Dtos.Auth
 {
     public class RegisterDto
     {

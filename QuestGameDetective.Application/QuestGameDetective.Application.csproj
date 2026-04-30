@@ -7,12 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\QuestGameDetective.Domain\QuestGameDetective.Domain.csproj" />
+    <Compile Remove="DTO\**" />
+    <Compile Remove="Services\**" />
+    <EmbeddedResource Remove="DTO\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <None Remove="DTO\**" />
+    <None Remove="Services\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTO\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\QuestGameDetective.Domain\QuestGameDetective.Domain.csproj" />
   </ItemGroup>
 
 </Project>

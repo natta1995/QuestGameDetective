@@ -1,9 +1,8 @@
-﻿namespace QuestGameDetective.Domain.Enums
+﻿namespace QuestGameDetective.Domain.Enums;
+
+public enum QuestResult
 {
-    public enum QuestResult
-    {
-        None,
-        Solved,
-        Failed
-    }
+    None,
+    Solved,
+    Failed
 }

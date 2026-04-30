@@ -1,7 +1,8 @@
-﻿using QuestGameDetective.API.Models.Enums;
+﻿using QuestGameDetective.Domain.Enums;
 
-namespace QuestGameDetective.API.Models
+namespace QuestGameDetective.Domain.Entities
 {
+
     public class MurderCase
     {
         public Guid Id { get; set; }

@@ -1,5 +1,5 @@
-﻿using QuestGameDetective.API.Dtos.Cases;
-using QuestGameDetective.API.Models.Enums;
+﻿using QuestGameDetective.Application.Dtos.Cases;
+using QuestGameDetective.Domain.Enums;
 
 public class CaseReadDto
 {
