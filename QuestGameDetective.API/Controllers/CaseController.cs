@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuestGameDetective.API.Data;
 using QuestGameDetective.API.Dtos.Cases;
@@ -7,6 +8,7 @@ namespace QuestGameDetective.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class CasesController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -20,7 +22,6 @@ namespace QuestGameDetective.API.Controllers
         public async Task<IActionResult> GetAllCases()
         {
             var cases = await _context.MurderCases
-                .Include(c => c.Suspects)
                 .Select(c => new CaseReadDto
                 {
                     Id = c.Id,
@@ -47,7 +48,6 @@ namespace QuestGameDetective.API.Controllers
         public async Task<IActionResult> GetCaseById(Guid id)
         {
             var murderCase = await _context.MurderCases
-                .Include(c => c.Suspects)
                 .Where(c => c.Id == id)
                 .Select(c => new CaseReadDto
                 {

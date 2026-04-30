@@ -19,10 +19,11 @@ namespace QuestGameDetective.API.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet("users")]
-        public async Task<IActionResult> GetAllUsers()
+        [HttpGet("users")] // Admin kan hämta alla Users, så om listan är tom retuneras en tom array
+        public async Task<ActionResult<List<UserReadDto>>> GetAllUsers()
         {
             var users = await _userManager.Users
+                .OrderBy(u => u.UserName)  // för bättre organisering av listan innan den skickas till frontend
                 .Select(u => new UserReadDto
                 {
                     Id = u.Id,
