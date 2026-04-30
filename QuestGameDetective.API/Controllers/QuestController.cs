@@ -79,33 +79,34 @@ namespace QuestGameDetective.API.Controllers
         public async Task<IActionResult> GetMyQuests()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            Console.WriteLine("Detta är ett test");
-            Console.WriteLine(userId);
 
             if (string.IsNullOrEmpty(userId))
             {
                 return Unauthorized("User id not found in token.");
             }
 
-                    var myQuests = await _context.Quests
-             .Where(q => q.UserId == userId)
-             .Select(q => new QuestReadDto
-             {
-                 Id = q.Id,
-                 Status = q.Status,
-                 Result = q.Result,
-                 AcceptedAt = q.AcceptedAt,
-                 //CompletedAt = q.CompletedAt
-             })
-             .ToListAsync();
+            var myQuests = await _context.Quests
+                 .Where(q => q.UserId == userId)
+                 .Select(q => new QuestReadDto
+                 {
+                     Id = q.Id,
+                     Status = q.Status,
+                     Result = q.Result,
+                     AcceptedAt = q.AcceptedAt,
+                     //CompletedAt = q.CompletedAt
+                 })
+                 .ToListAsync();
 
-                    return Ok(myQuests);
+            return Ok(myQuests);
         }
 
         [HttpPut("{id}/result")]
         public async Task<IActionResult> UpdateQuestResult(Guid id, [FromBody] UpdateQuestResultDto dto)
         {
-            var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (dto == null || string.IsNullOrWhiteSpace(dto.Result))
+                return BadRequest("Result is required.");
 
             if (userId == null)
                 return Unauthorized();
