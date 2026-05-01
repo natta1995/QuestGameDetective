@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using QuestGameDetective.Infrastructure.Data;
-using QuestGameDetective.Application.Dtos.Cases;
+using QuestGameDetective.Application.Cases.Queries.GetAllCases;
+using QuestGameDetective.Application.Cases.Queries.GetCaseById;
 
 namespace QuestGameDetective.API.Controllers
 {
@@ -11,35 +11,17 @@ namespace QuestGameDetective.API.Controllers
     [Authorize]
     public class CasesController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly IMediator _mediator;
 
-        public CasesController(AppDbContext context)
+        public CasesController(IMediator mediator)
         {
-            _context = context;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllCases()
         {
-            var cases = await _context.MurderCases
-                .Select(c => new CaseReadDto
-                {
-                    Id = c.Id,
-                    Title = c.Title,
-                    ShortSummary = c.ShortSummary,
-                    Victim = c.Victim,
-                    Place = c.Place,
-                    CauseOfDeath = c.CauseOfDeath,
-                    Weapon = c.Weapon,
-                    CrimeSceneDescription = c.CrimeSceneDescription,
-                    Priority = c.Priority,
-                    Suspects = c.Suspects.Select(s => new SuspectDto
-                    {
-                        Name = s.Name,
-                        Statement = s.Statement
-                    }).ToList()
-                })
-                .ToListAsync();
+            var cases = await _mediator.Send(new GetAllCasesQuery());
 
             return Ok(cases);
         }
@@ -47,26 +29,7 @@ namespace QuestGameDetective.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCaseById(Guid id)
         {
-            var murderCase = await _context.MurderCases
-                .Where(c => c.Id == id)
-                .Select(c => new CaseReadDto
-                {
-                    Id = c.Id,
-                    Title = c.Title,
-                    ShortSummary = c.ShortSummary,
-                    Victim = c.Victim,
-                    Place = c.Place,
-                    CauseOfDeath = c.CauseOfDeath,
-                    Weapon = c.Weapon,
-                    CrimeSceneDescription = c.CrimeSceneDescription,
-                    Priority = c.Priority,
-                    Suspects = c.Suspects.Select(s => new SuspectDto
-                    {
-                        Name = s.Name,
-                        Statement = s.Statement
-                    }).ToList()
-                })
-                .FirstOrDefaultAsync();
+            var murderCase = await _mediator.Send(new GetCaseByIdQuery(id));
 
             if (murderCase == null)
                 return NotFound();
