@@ -10,11 +10,11 @@ namespace QuestGameDetective.API.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Authorize(Roles = "Admin")]
-    public class AdminController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public AdminController(UserManager<ApplicationUser> userManager)
+        public UserController(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
         }
