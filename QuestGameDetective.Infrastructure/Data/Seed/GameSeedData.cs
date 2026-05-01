@@ -3,7 +3,7 @@ using QuestGameDetective.Domain.Enums;
 
 
 
-namespace QuestGameDetective.API.Data.Seed
+namespace QuestGameDetective.Infrastructure.Data.Seed
 {
     public static class GameSeedData
     {

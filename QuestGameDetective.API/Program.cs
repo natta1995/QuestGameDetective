@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using QuestGameDetective.API.Data;
-using QuestGameDetective.API.Models;
+using QuestGameDetective.Infrastructure.Data;
+using QuestGameDetective.Domain.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using QuestGameDetective.API.Services;
+using QuestGameDetective.API.Data.Seed;
 
 namespace QuestGameDetective.API
 {

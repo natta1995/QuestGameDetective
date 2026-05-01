@@ -1,8 +1,10 @@
-﻿namespace QuestGameDetective.Domain.Enums;
-
-public enum CasePriority
+﻿namespace QuestGameDetective.Domain.Enums
 {
-    Low,
-    Medium,
-    High
+
+    public enum CasePriority
+    {
+        Low,
+        Medium,
+        High
+    }
 }

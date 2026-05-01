@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using QuestGameDetective.API.Data;
+using QuestGameDetective.Infrastructure.Data;
 using QuestGameDetective.Application.Dtos.Cases;
 
 namespace QuestGameDetective.API.Controllers

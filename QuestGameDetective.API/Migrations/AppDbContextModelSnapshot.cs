@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuestGameDetective.API.Data;
+using QuestGameDetective.Infrastructure.Data;
 
 #nullable disable
 
