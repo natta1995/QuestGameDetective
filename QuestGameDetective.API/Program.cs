@@ -1,12 +1,15 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using QuestGameDetective.Infrastructure.Data;
-using QuestGameDetective.Domain.Entities;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using QuestGameDetective.API.Services;
 using QuestGameDetective.API.Data.Seed;
+using QuestGameDetective.API.Services;
+using QuestGameDetective.Domain.Entities;
+using QuestGameDetective.Domain.Interfaces;
+using QuestGameDetective.Infrastructure.Data;
+using QuestGameDetective.Infrastructure.Repository;
+using QuestGameDetective.Application.Cases.Queries.GetAllCases;
+using System.Text;
 
 namespace QuestGameDetective.API
 {
@@ -49,6 +52,12 @@ namespace QuestGameDetective.API
                         Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
                 };
             });
+
+
+            builder.Services.AddMediatR(cfg =>
+             cfg.RegisterServicesFromAssembly(typeof(GetAllCasesQueryHandler).Assembly));
+
+            builder.Services.AddScoped<IMurderCaseRepository, MurderCaseRepository>();
 
             // Services
             builder.Services.AddScoped<TokenService>();
