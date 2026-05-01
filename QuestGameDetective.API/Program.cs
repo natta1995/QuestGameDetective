@@ -31,6 +31,17 @@ namespace QuestGameDetective.API
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:5173")
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                    });
+            });
+
             // JWT Authentication
             builder.Services.AddAuthentication(options =>
             {
@@ -72,6 +83,8 @@ namespace QuestGameDetective.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("AllowFrontend");
 
             app.UseAuthentication();
             app.UseAuthorization();
