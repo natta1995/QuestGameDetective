@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using QuestGameDetective.Domain.Entities;
-using QuestGameDetective.API.Data.Seed;
+using QuestGameDetective.Infrastructure.Data.Seed;
 
-using QuestGameDetective.API.Models; // Sålänge
 
-namespace QuestGameDetective.API.Data
+namespace QuestGameDetective.Infrastructure.Data
 {
     public class AppDbContext : IdentityDbContext<ApplicationUser>
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using QuestGameDetective.API.Models;
+using QuestGameDetective.Domain.Entities;
 
-namespace QuestGameDetective.API.Data
+namespace QuestGameDetective.API.Data.Seed
 {
     public static class SeedUsers
     {

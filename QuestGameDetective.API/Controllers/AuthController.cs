@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using QuestGameDetective.API.Models;
+using QuestGameDetective.Domain.Entities;
 using QuestGameDetective.API.Services;
 using QuestGameDetective.Application.Dtos.Auth;
 

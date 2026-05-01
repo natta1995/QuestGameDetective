@@ -1,7 +1,9 @@
-﻿namespace QuestGameDetective.Domain.Enums;
-
-public enum QuestStatus
+﻿namespace QuestGameDetective.Domain.Enums
 {
-    Accepted,
-    Completed
+
+    public enum QuestStatus
+    {
+        Accepted,
+        Completed
+    }
 }

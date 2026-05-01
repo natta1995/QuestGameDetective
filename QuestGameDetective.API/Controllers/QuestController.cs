@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using QuestGameDetective.API.Data;
+using QuestGameDetective.Infrastructure.Data;
 using QuestGameDetective.Domain.Entities;
 using QuestGameDetective.Domain.Enums;
 using QuestGameDetective.Application.Dtos.Quests;

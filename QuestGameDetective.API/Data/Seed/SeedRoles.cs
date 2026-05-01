@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace QuestGameDetective.API.Data
+namespace QuestGameDetective.API.Data.Seed
 {
     public static class SeedRoles
     {
