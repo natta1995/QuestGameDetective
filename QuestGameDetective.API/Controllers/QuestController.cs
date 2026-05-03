@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using QuestGameDetective.Application.Dtos.Cases;
 using QuestGameDetective.Application.Dtos.Quest;
 using QuestGameDetective.Application.Dtos.Quests;
 using QuestGameDetective.Domain.Entities;
@@ -102,6 +103,45 @@ namespace QuestGameDetective.API.Controllers
          .ToListAsync();
 
             return Ok(myQuests);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetQuestDetails(Guid id)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized();
+
+            var quest = await _context.Quests
+                .Include(q => q.MurderCase)
+                    .ThenInclude(m => m.Suspects)
+                .FirstOrDefaultAsync(q => q.Id == id && q.UserId == userId);
+
+            if (quest == null)
+                return NotFound("Quest not found.");
+
+            var dto = new QuestCaseDetailDto
+            {
+                QuestId = quest.Id,
+                MurderCaseId = quest.MurderCaseId,
+                Title = quest.MurderCase.Title,
+                ShortSummary = quest.MurderCase.ShortSummary,
+                Victim = quest.MurderCase.Victim,
+                Place = quest.MurderCase.Place,
+                CauseOfDeath = quest.MurderCase.CauseOfDeath,
+                Weapon = quest.MurderCase.Weapon,
+                CrimeSceneDescription = quest.MurderCase.CrimeSceneDescription,
+                Status = quest.Status,
+                Result = quest.Result,
+                Suspects = quest.MurderCase.Suspects.Select(s => new SuspectDto
+                {
+                    Name = s.Name,
+                    Statement = s.Statement
+                }).ToList()
+            };
+
+            return Ok(dto);
         }
 
         [HttpPut("{id}/result")]
