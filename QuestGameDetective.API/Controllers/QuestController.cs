@@ -1,11 +1,12 @@
-﻿using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using QuestGameDetective.Infrastructure.Data;
+using QuestGameDetective.Application.Dtos.Quest;
+using QuestGameDetective.Application.Dtos.Quests;
 using QuestGameDetective.Domain.Entities;
 using QuestGameDetective.Domain.Enums;
-using QuestGameDetective.Application.Dtos.Quests;
+using QuestGameDetective.Infrastructure.Data;
+using System.Security.Claims;
 
 namespace QuestGameDetective.API.Controllers
 {
@@ -86,16 +87,19 @@ namespace QuestGameDetective.API.Controllers
             }
 
             var myQuests = await _context.Quests
-                 .Where(q => q.UserId == userId)
-                 .Select(q => new QuestReadDto
-                 {
-                     Id = q.Id,
-                     Status = q.Status,
-                     Result = q.Result,
-                     AcceptedAt = q.AcceptedAt,
-                     //CompletedAt = q.CompletedAt
-                 })
-                 .ToListAsync();
+         .Include(q => q.MurderCase)
+         .Where(q => q.UserId == userId)
+         .Select(q => new MyQuestDto
+         {
+             QuestId = q.Id,
+             MurderCaseId = q.MurderCaseId,
+             Title = q.MurderCase.Title,
+             ShortSummary = q.MurderCase.ShortSummary,
+             Status = q.Status,
+             Result = q.Result,
+             AcceptedAt = q.AcceptedAt
+         })
+         .ToListAsync();
 
             return Ok(myQuests);
         }
