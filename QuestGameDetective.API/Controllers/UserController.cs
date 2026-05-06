@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using QuestGameDetective.Domain.Entities;
 using QuestGameDetective.Application.Dtos.Users;
+using QuestGameDetective.Application.Users.Queries.GetAllUsers;
 
 namespace QuestGameDetective.API.Controllers
 {
@@ -12,25 +11,17 @@ namespace QuestGameDetective.API.Controllers
     [Authorize(Roles = "Admin")]
     public class UserController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IMediator _mediator;
 
-        public UserController(UserManager<ApplicationUser> userManager)
+        public UserController(IMediator mediator)
         {
-            _userManager = userManager;
+            _mediator = mediator;
         }
 
-        [HttpGet("users")] // Admin kan hämta alla Users, så om listan är tom retuneras en tom array
+        [HttpGet("users")]
         public async Task<ActionResult<List<UserReadDto>>> GetAllUsers()
         {
-            var users = await _userManager.Users
-                .OrderBy(u => u.UserName)  // för bättre organisering av listan innan den skickas till frontend
-                .Select(u => new UserReadDto
-                {
-                    Id = u.Id,
-                    UserName = u.UserName ?? "",
-                    Email = u.Email ?? ""
-                })
-                .ToListAsync();
+            var users = await _mediator.Send(new GetAllUsersQuery());
 
             return Ok(users);
         }

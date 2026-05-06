@@ -4,11 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using QuestGameDetective.API.Data.Seed;
 using QuestGameDetective.API.Services;
+using QuestGameDetective.Application.Cases.Queries.GetAllCases;
 using QuestGameDetective.Domain.Entities;
 using QuestGameDetective.Domain.Interfaces;
 using QuestGameDetective.Infrastructure.Data;
+using QuestGameDetective.Infrastructure.Repositories;
 using QuestGameDetective.Infrastructure.Repository;
-using QuestGameDetective.Application.Cases.Queries.GetAllCases;
 using System.Text;
 
 namespace QuestGameDetective.API
@@ -69,6 +70,7 @@ namespace QuestGameDetective.API
              cfg.RegisterServicesFromAssembly(typeof(GetAllCasesQueryHandler).Assembly));
 
             builder.Services.AddScoped<IMurderCaseRepository, MurderCaseRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             // Services
             builder.Services.AddScoped<TokenService>();
