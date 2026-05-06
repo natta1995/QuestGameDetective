@@ -1,19 +1,15 @@
-﻿using MediatR;
-using QuestGameDetective.Application.Quests.Queries.GetMyQuests;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using QuestGameDetective.Application.Dtos.Cases;
-using QuestGameDetective.Application.Dtos.Quest;
-using QuestGameDetective.Application.Dtos.Quests;
-using QuestGameDetective.Domain.Entities;
-using QuestGameDetective.Domain.Enums;
-using QuestGameDetective.Infrastructure.Data;
-using System.Security.Claims;
-using QuestGameDetective.Application.Quests.Commands.AcceptQuest;
+﻿using QuestGameDetective.Application.Quests.Commands.AcceptQuest;
 using QuestGameDetective.Application.Quests.Queries.GetQuestDetails;
 using QuestGameDetective.Application.Quests.Commands.UpdateQuestResult;
 using QuestGameDetective.Application.Quests.Commands.DeleteQuest;
+using QuestGameDetective.Application.Quests.Queries.GetMyQuests;
+using QuestGameDetective.Application.Dtos.Quest;
+using QuestGameDetective.Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+using MediatR;
+
 
 
 namespace QuestGameDetective.API.Controllers
@@ -23,12 +19,12 @@ namespace QuestGameDetective.API.Controllers
     [Authorize]
     public class QuestsController : ControllerBase
     {
-        private readonly AppDbContext _context;
+       
         private readonly IMediator _mediator;
 
         public QuestsController(AppDbContext context, IMediator mediator)
         {
-            _context = context;
+          
             _mediator = mediator;
         }
 

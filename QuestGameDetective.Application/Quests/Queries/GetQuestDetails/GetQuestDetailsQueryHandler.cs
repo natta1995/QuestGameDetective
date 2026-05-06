@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using QuestGameDetective.Application.Dtos.Cases;
-using QuestGameDetective.Application.Dtos.Quests;
+using QuestGameDetective.Application.Dtos.Case;
+using QuestGameDetective.Application.Dtos.Quest;
 using QuestGameDetective.Domain.Interfaces;
 
 namespace QuestGameDetective.Application.Quests.Queries.GetQuestDetails;

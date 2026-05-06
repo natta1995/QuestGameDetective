@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using QuestGameDetective.Application.Cases.Queries.GetAllCases;
+using QuestGameDetective.Application.Cases.Queries.GetCaseById;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using QuestGameDetective.Application.Cases.Queries.GetAllCases;
-using QuestGameDetective.Application.Cases.Queries.GetCaseById;
+using MediatR;
+
 
 namespace QuestGameDetective.API.Controllers
 {
@@ -18,7 +19,7 @@ namespace QuestGameDetective.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
+        [HttpGet] // Hämta alla fall 
         public async Task<IActionResult> GetAllCases()
         {
             var cases = await _mediator.Send(new GetAllCasesQuery());
@@ -26,7 +27,7 @@ namespace QuestGameDetective.API.Controllers
             return Ok(cases);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}")] // Hämta just det här fallet
         public async Task<IActionResult> GetCaseById(Guid id)
         {
             var murderCase = await _mediator.Send(new GetCaseByIdQuery(id));

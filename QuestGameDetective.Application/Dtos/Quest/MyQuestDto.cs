@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using QuestGameDetective.Domain.Enums;
+﻿using QuestGameDetective.Domain.Enums;
 
 namespace QuestGameDetective.Application.Dtos.Quest
 {

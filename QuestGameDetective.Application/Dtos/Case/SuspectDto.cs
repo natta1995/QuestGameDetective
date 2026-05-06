@@ -1,4 +1,4 @@
-﻿namespace QuestGameDetective.Application.Dtos.Cases
+﻿namespace QuestGameDetective.Application.Dtos.Case
 {
     public class SuspectDto
     {

@@ -21,7 +21,7 @@ namespace QuestGameDetective.Domain.Entities
 
         public List<Suspect> Suspects { get; set; } = new();
 
-        // Vänta med denna om den ställer till det i EF
+        // Väntar med denna, oklart om den skall vara med
         //public List<string> Clues { get; set; } = new();
     }
 }

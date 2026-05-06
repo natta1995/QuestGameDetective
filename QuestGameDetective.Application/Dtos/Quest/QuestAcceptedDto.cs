@@ -1,6 +1,6 @@
 ﻿using QuestGameDetective.Domain.Enums;
 
-namespace QuestGameDetective.Application.Dtos.Quests
+namespace QuestGameDetective.Application.Dtos.Quest
 {
     public class QuestAcceptedDto
     {

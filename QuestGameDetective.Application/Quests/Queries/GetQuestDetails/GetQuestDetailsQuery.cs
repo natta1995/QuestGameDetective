@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using QuestGameDetective.Application.Dtos.Quests;
+using QuestGameDetective.Application.Dtos.Quest;
 
 namespace QuestGameDetective.Application.Quests.Queries.GetQuestDetails;
 
