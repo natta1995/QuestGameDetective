@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using QuestGameDetective.Application.Dtos.User;
+using QuestGameDetective.Application.Users.Queries.GetAllUsers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using QuestGameDetective.Application.Dtos.Users;
-using QuestGameDetective.Application.Users.Queries.GetAllUsers;
+using MediatR;
+
 
 namespace QuestGameDetective.API.Controllers
 {

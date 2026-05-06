@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using QuestGameDetective.Application.Dtos.Quest;
-using QuestGameDetective.Application.Dtos.Quests;
 using QuestGameDetective.Domain.Entities;
 using QuestGameDetective.Domain.Enums;
 using QuestGameDetective.Domain.Interfaces;

@@ -1,4 +1,4 @@
-﻿namespace QuestGameDetective.Application.Dtos.Users
+﻿namespace QuestGameDetective.Application.Dtos.User
 {
     public class UserReadDto
     {

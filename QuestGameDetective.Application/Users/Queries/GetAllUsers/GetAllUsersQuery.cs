@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using QuestGameDetective.Application.Dtos.Users;
+using QuestGameDetective.Application.Dtos.User;
 
 namespace QuestGameDetective.Application.Users.Queries.GetAllUsers;
 

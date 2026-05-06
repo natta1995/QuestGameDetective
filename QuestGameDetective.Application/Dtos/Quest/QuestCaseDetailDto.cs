@@ -1,7 +1,7 @@
-﻿using QuestGameDetective.Application.Dtos.Cases;
+﻿using QuestGameDetective.Application.Dtos.Case;
 using QuestGameDetective.Domain.Enums;
 
-namespace QuestGameDetective.Application.Dtos.Quests
+namespace QuestGameDetective.Application.Dtos.Quest
 {
     public class QuestCaseDetailDto
     {

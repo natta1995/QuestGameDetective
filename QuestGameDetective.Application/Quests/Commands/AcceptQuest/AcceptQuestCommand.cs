@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using QuestGameDetective.Application.Dtos.Quest;
-using QuestGameDetective.Application.Dtos.Quests;
 
 namespace QuestGameDetective.Application.Quests.Commands.AcceptQuest;
 
