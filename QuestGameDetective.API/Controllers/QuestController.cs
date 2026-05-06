@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
+using QuestGameDetective.Application.Quests.Queries.GetMyQuests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuestGameDetective.Application.Dtos.Cases;
@@ -8,6 +10,11 @@ using QuestGameDetective.Domain.Entities;
 using QuestGameDetective.Domain.Enums;
 using QuestGameDetective.Infrastructure.Data;
 using System.Security.Claims;
+using QuestGameDetective.Application.Quests.Commands.AcceptQuest;
+using QuestGameDetective.Application.Quests.Queries.GetQuestDetails;
+using QuestGameDetective.Application.Quests.Commands.UpdateQuestResult;
+using QuestGameDetective.Application.Quests.Commands.DeleteQuest;
+
 
 namespace QuestGameDetective.API.Controllers
 {
@@ -17,10 +24,12 @@ namespace QuestGameDetective.API.Controllers
     public class QuestsController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly IMediator _mediator;
 
-        public QuestsController(AppDbContext context)
+        public QuestsController(AppDbContext context, IMediator mediator)
         {
             _context = context;
+            _mediator = mediator;
         }
 
         [HttpPost("accept/{caseId}")]
@@ -33,48 +42,17 @@ namespace QuestGameDetective.API.Controllers
                 return Unauthorized("User id not found in token.");
             }
 
-            var murderCase = await _context.MurderCases.FindAsync(caseId);
-
-            if (murderCase == null)
+            try
             {
-                return NotFound("Case not found.");
+                var result = await _mediator.Send(
+                    new AcceptQuestCommand(caseId, userId));
+
+                return Ok(result);
             }
-
-            var existingQuest = await _context.Quests
-                .FirstOrDefaultAsync(q => q.UserId == userId && q.MurderCaseId == caseId);
-
-            if (existingQuest != null)
+            catch (Exception ex)
             {
-                return BadRequest("You have already accepted this case.");
+                return BadRequest(ex.Message);
             }
-
-            var quest = new Quest
-            {
-                UserId = userId,
-                MurderCaseId = caseId,
-                Status = QuestStatus.Accepted,
-                Result = QuestResult.None,
-                AcceptedAt = DateTime.UtcNow,
-                ExpiresAt = DateTime.UtcNow.AddHours(24),
-                Reminder20hSent = false,
-                Reminder1hSent = false
-            };
-
-            _context.Quests.Add(quest);
-            await _context.SaveChangesAsync();
-
-            var dto = new QuestAcceptedDto
-            {
-                Message = "Quest accepted.",
-                QuestId = quest.Id,
-                MurderCaseId = quest.MurderCaseId,
-                Status = quest.Status,
-                Result = quest.Result,
-                AcceptedAt = quest.AcceptedAt,
-                ExpiresAt = quest.ExpiresAt
-            };
-
-            return Ok(dto);
         }
 
         [HttpGet("mine")]
@@ -87,20 +65,7 @@ namespace QuestGameDetective.API.Controllers
                 return Unauthorized("User id not found in token.");
             }
 
-            var myQuests = await _context.Quests
-         .Include(q => q.MurderCase)
-         .Where(q => q.UserId == userId)
-         .Select(q => new MyQuestDto
-         {
-             QuestId = q.Id,
-             MurderCaseId = q.MurderCaseId,
-             Title = q.MurderCase.Title,
-             ShortSummary = q.MurderCase.ShortSummary,
-             Status = q.Status,
-             Result = q.Result,
-             AcceptedAt = q.AcceptedAt
-         })
-         .ToListAsync();
+            var myQuests = await _mediator.Send(new GetMyQuestsQuery(userId));
 
             return Ok(myQuests);
         }
@@ -113,35 +78,12 @@ namespace QuestGameDetective.API.Controllers
             if (string.IsNullOrEmpty(userId))
                 return Unauthorized();
 
-            var quest = await _context.Quests
-                .Include(q => q.MurderCase)
-                    .ThenInclude(m => m.Suspects)
-                .FirstOrDefaultAsync(q => q.Id == id && q.UserId == userId);
+            var quest = await _mediator.Send(new GetQuestDetailsQuery(id, userId));
 
             if (quest == null)
                 return NotFound("Quest not found.");
 
-            var dto = new QuestCaseDetailDto
-            {
-                QuestId = quest.Id,
-                MurderCaseId = quest.MurderCaseId,
-                Title = quest.MurderCase.Title,
-                ShortSummary = quest.MurderCase.ShortSummary,
-                Victim = quest.MurderCase.Victim,
-                Place = quest.MurderCase.Place,
-                CauseOfDeath = quest.MurderCase.CauseOfDeath,
-                Weapon = quest.MurderCase.Weapon,
-                CrimeSceneDescription = quest.MurderCase.CrimeSceneDescription,
-                Status = quest.Status,
-                Result = quest.Result,
-                Suspects = quest.MurderCase.Suspects.Select(s => new SuspectDto
-                {
-                    Name = s.Name,
-                    Statement = s.Statement
-                }).ToList()
-            };
-
-            return Ok(dto);
+            return Ok(quest);
         }
 
         [HttpPut("{id}/result")]
@@ -149,40 +91,20 @@ namespace QuestGameDetective.API.Controllers
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            if (dto == null || string.IsNullOrWhiteSpace(dto.Result))
-                return BadRequest("Result is required.");
-
-            if (userId == null)
+            if (string.IsNullOrEmpty(userId))
                 return Unauthorized();
 
-            var quest = await _context.Quests
-                .FirstOrDefaultAsync(q => q.Id == id && q.UserId == userId);
-
-            if (quest == null)
-                return NotFound("Quest not found.");
-
-            if (quest.Result != QuestResult.None)
-                return BadRequest("Quest result is already set.");
-
-            if (!Enum.TryParse<QuestResult>(dto.Result, true, out var newResult))
-                return BadRequest("Invalid result.");
-
-            if (newResult == QuestResult.None)
-                return BadRequest("Result cannot be None.");
-
-            quest.Result = newResult;
-
-            await _context.SaveChangesAsync();
-
-            var resultDto = new QuestReadDto
+            try
             {
-                Id = quest.Id,
-                Status = quest.Status,
-                Result = quest.Result,
-                AcceptedAt = quest.AcceptedAt
-            };
+                var result = await _mediator.Send(
+                    new UpdateQuestResultCommand(id, userId, dto?.Result ?? ""));
 
-            return Ok(resultDto);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
@@ -195,18 +117,16 @@ namespace QuestGameDetective.API.Controllers
                 return Unauthorized("User id not found in token.");
             }
 
-            var quest = await _context.Quests
-                .FirstOrDefaultAsync(q => q.Id == id && q.UserId == userId);
-
-            if (quest == null)
+            try
             {
-                return NotFound("Quest not found.");
+                await _mediator.Send(new DeleteQuestCommand(id, userId));
+
+                return NoContent();
             }
-
-            _context.Quests.Remove(quest);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

@@ -71,6 +71,7 @@ namespace QuestGameDetective.API
 
             builder.Services.AddScoped<IMurderCaseRepository, MurderCaseRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IQuestRepository, QuestRepository>();
 
             // Services
             builder.Services.AddScoped<TokenService>();
