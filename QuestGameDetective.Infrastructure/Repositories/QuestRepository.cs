@@ -21,4 +21,25 @@ public class QuestRepository : IQuestRepository
             .Where(q => q.UserId == userId)
             .ToListAsync();
     }
+
+    public async Task<bool> MurderCaseExistsAsync(Guid caseId)
+    {
+        return await _context.MurderCases
+            .AnyAsync(c => c.Id == caseId);
+    }
+
+    public async Task<bool> UserAlreadyAcceptedCaseAsync(string userId, Guid caseId)
+    {
+        return await _context.Quests
+            .AnyAsync(q => q.UserId == userId && q.MurderCaseId == caseId);
+    }
+
+    public async Task<Quest> AddAsync(Quest quest)
+    {
+        _context.Quests.Add(quest);
+
+        await _context.SaveChangesAsync();
+
+        return quest;
+    }
 }

@@ -10,6 +10,7 @@ using QuestGameDetective.Domain.Entities;
 using QuestGameDetective.Domain.Enums;
 using QuestGameDetective.Infrastructure.Data;
 using System.Security.Claims;
+using QuestGameDetective.Application.Quests.Commands.AcceptQuest;
 
 namespace QuestGameDetective.API.Controllers
 {
@@ -37,48 +38,17 @@ namespace QuestGameDetective.API.Controllers
                 return Unauthorized("User id not found in token.");
             }
 
-            var murderCase = await _context.MurderCases.FindAsync(caseId);
-
-            if (murderCase == null)
+            try
             {
-                return NotFound("Case not found.");
+                var result = await _mediator.Send(
+                    new AcceptQuestCommand(caseId, userId));
+
+                return Ok(result);
             }
-
-            var existingQuest = await _context.Quests
-                .FirstOrDefaultAsync(q => q.UserId == userId && q.MurderCaseId == caseId);
-
-            if (existingQuest != null)
+            catch (Exception ex)
             {
-                return BadRequest("You have already accepted this case.");
+                return BadRequest(ex.Message);
             }
-
-            var quest = new Quest
-            {
-                UserId = userId,
-                MurderCaseId = caseId,
-                Status = QuestStatus.Accepted,
-                Result = QuestResult.None,
-                AcceptedAt = DateTime.UtcNow,
-                ExpiresAt = DateTime.UtcNow.AddHours(24),
-                Reminder20hSent = false,
-                Reminder1hSent = false
-            };
-
-            _context.Quests.Add(quest);
-            await _context.SaveChangesAsync();
-
-            var dto = new QuestAcceptedDto
-            {
-                Message = "Quest accepted.",
-                QuestId = quest.Id,
-                MurderCaseId = quest.MurderCaseId,
-                Status = quest.Status,
-                Result = quest.Result,
-                AcceptedAt = quest.AcceptedAt,
-                ExpiresAt = quest.ExpiresAt
-            };
-
-            return Ok(dto);
         }
 
         [HttpGet("mine")]
