@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
+using QuestGameDetective.Application.Quests.Queries.GetMyQuests;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuestGameDetective.Application.Dtos.Cases;
@@ -17,10 +19,12 @@ namespace QuestGameDetective.API.Controllers
     public class QuestsController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly IMediator _mediator;
 
-        public QuestsController(AppDbContext context)
+        public QuestsController(AppDbContext context, IMediator mediator)
         {
             _context = context;
+            _mediator = mediator;
         }
 
         [HttpPost("accept/{caseId}")]
@@ -87,20 +91,7 @@ namespace QuestGameDetective.API.Controllers
                 return Unauthorized("User id not found in token.");
             }
 
-            var myQuests = await _context.Quests
-         .Include(q => q.MurderCase)
-         .Where(q => q.UserId == userId)
-         .Select(q => new MyQuestDto
-         {
-             QuestId = q.Id,
-             MurderCaseId = q.MurderCaseId,
-             Title = q.MurderCase.Title,
-             ShortSummary = q.MurderCase.ShortSummary,
-             Status = q.Status,
-             Result = q.Result,
-             AcceptedAt = q.AcceptedAt
-         })
-         .ToListAsync();
+            var myQuests = await _mediator.Send(new GetMyQuestsQuery(userId));
 
             return Ok(myQuests);
         }
