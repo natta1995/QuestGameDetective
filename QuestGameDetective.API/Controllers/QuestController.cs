@@ -184,5 +184,29 @@ namespace QuestGameDetective.API.Controllers
 
             return Ok(resultDto);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteQuest(Guid id)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized("User id not found in token.");
+            }
+
+            var quest = await _context.Quests
+                .FirstOrDefaultAsync(q => q.Id == id && q.UserId == userId);
+
+            if (quest == null)
+            {
+                return NotFound("Quest not found.");
+            }
+
+            _context.Quests.Remove(quest);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }
