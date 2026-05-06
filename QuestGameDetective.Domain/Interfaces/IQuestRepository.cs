@@ -13,4 +13,8 @@ public interface IQuestRepository
     Task<Quest> AddAsync(Quest quest);
 
     Task<Quest?> GetQuestDetailsAsync(Guid questId, string userId);
+
+    Task<Quest?> GetUserQuestAsync(Guid questId, string userId);
+
+    Task SaveChangesAsync();
 }

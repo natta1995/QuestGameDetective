@@ -12,6 +12,8 @@ using QuestGameDetective.Infrastructure.Data;
 using System.Security.Claims;
 using QuestGameDetective.Application.Quests.Commands.AcceptQuest;
 using QuestGameDetective.Application.Quests.Queries.GetQuestDetails;
+using QuestGameDetective.Application.Quests.Commands.UpdateQuestResult;
+
 
 namespace QuestGameDetective.API.Controllers
 {
@@ -88,40 +90,20 @@ namespace QuestGameDetective.API.Controllers
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            if (dto == null || string.IsNullOrWhiteSpace(dto.Result))
-                return BadRequest("Result is required.");
-
-            if (userId == null)
+            if (string.IsNullOrEmpty(userId))
                 return Unauthorized();
 
-            var quest = await _context.Quests
-                .FirstOrDefaultAsync(q => q.Id == id && q.UserId == userId);
-
-            if (quest == null)
-                return NotFound("Quest not found.");
-
-            if (quest.Result != QuestResult.None)
-                return BadRequest("Quest result is already set.");
-
-            if (!Enum.TryParse<QuestResult>(dto.Result, true, out var newResult))
-                return BadRequest("Invalid result.");
-
-            if (newResult == QuestResult.None)
-                return BadRequest("Result cannot be None.");
-
-            quest.Result = newResult;
-
-            await _context.SaveChangesAsync();
-
-            var resultDto = new QuestReadDto
+            try
             {
-                Id = quest.Id,
-                Status = quest.Status,
-                Result = quest.Result,
-                AcceptedAt = quest.AcceptedAt
-            };
+                var result = await _mediator.Send(
+                    new UpdateQuestResultCommand(id, userId, dto?.Result ?? ""));
 
-            return Ok(resultDto);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]

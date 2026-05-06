@@ -50,4 +50,15 @@ public class QuestRepository : IQuestRepository
                 .ThenInclude(m => m.Suspects)
             .FirstOrDefaultAsync(q => q.Id == questId && q.UserId == userId);
     }
+
+    public async Task<Quest?> GetUserQuestAsync(Guid questId, string userId)
+    {
+        return await _context.Quests
+            .FirstOrDefaultAsync(q => q.Id == questId && q.UserId == userId);
+    }
+
+    public async Task SaveChangesAsync()
+    {
+        await _context.SaveChangesAsync();
+    }
 }
