@@ -42,4 +42,12 @@ public class QuestRepository : IQuestRepository
 
         return quest;
     }
+
+    public async Task<Quest?> GetQuestDetailsAsync(Guid questId, string userId)
+    {
+        return await _context.Quests
+            .Include(q => q.MurderCase)
+                .ThenInclude(m => m.Suspects)
+            .FirstOrDefaultAsync(q => q.Id == questId && q.UserId == userId);
+    }
 }

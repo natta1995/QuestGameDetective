@@ -11,4 +11,6 @@ public interface IQuestRepository
     Task<bool> UserAlreadyAcceptedCaseAsync(string userId, Guid caseId);
 
     Task<Quest> AddAsync(Quest quest);
+
+    Task<Quest?> GetQuestDetailsAsync(Guid questId, string userId);
 }

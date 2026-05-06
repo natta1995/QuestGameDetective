@@ -11,6 +11,7 @@ using QuestGameDetective.Domain.Enums;
 using QuestGameDetective.Infrastructure.Data;
 using System.Security.Claims;
 using QuestGameDetective.Application.Quests.Commands.AcceptQuest;
+using QuestGameDetective.Application.Quests.Queries.GetQuestDetails;
 
 namespace QuestGameDetective.API.Controllers
 {
@@ -74,35 +75,12 @@ namespace QuestGameDetective.API.Controllers
             if (string.IsNullOrEmpty(userId))
                 return Unauthorized();
 
-            var quest = await _context.Quests
-                .Include(q => q.MurderCase)
-                    .ThenInclude(m => m.Suspects)
-                .FirstOrDefaultAsync(q => q.Id == id && q.UserId == userId);
+            var quest = await _mediator.Send(new GetQuestDetailsQuery(id, userId));
 
             if (quest == null)
                 return NotFound("Quest not found.");
 
-            var dto = new QuestCaseDetailDto
-            {
-                QuestId = quest.Id,
-                MurderCaseId = quest.MurderCaseId,
-                Title = quest.MurderCase.Title,
-                ShortSummary = quest.MurderCase.ShortSummary,
-                Victim = quest.MurderCase.Victim,
-                Place = quest.MurderCase.Place,
-                CauseOfDeath = quest.MurderCase.CauseOfDeath,
-                Weapon = quest.MurderCase.Weapon,
-                CrimeSceneDescription = quest.MurderCase.CrimeSceneDescription,
-                Status = quest.Status,
-                Result = quest.Result,
-                Suspects = quest.MurderCase.Suspects.Select(s => new SuspectDto
-                {
-                    Name = s.Name,
-                    Statement = s.Statement
-                }).ToList()
-            };
-
-            return Ok(dto);
+            return Ok(quest);
         }
 
         [HttpPut("{id}/result")]
