@@ -17,4 +17,6 @@ public interface IQuestRepository
     Task<Quest?> GetUserQuestAsync(Guid questId, string userId);
 
     Task SaveChangesAsync();
+
+    Task DeleteAsync(Quest quest);
 }

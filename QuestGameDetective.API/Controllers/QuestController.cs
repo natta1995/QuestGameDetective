@@ -13,6 +13,7 @@ using System.Security.Claims;
 using QuestGameDetective.Application.Quests.Commands.AcceptQuest;
 using QuestGameDetective.Application.Quests.Queries.GetQuestDetails;
 using QuestGameDetective.Application.Quests.Commands.UpdateQuestResult;
+using QuestGameDetective.Application.Quests.Commands.DeleteQuest;
 
 
 namespace QuestGameDetective.API.Controllers
@@ -116,18 +117,16 @@ namespace QuestGameDetective.API.Controllers
                 return Unauthorized("User id not found in token.");
             }
 
-            var quest = await _context.Quests
-                .FirstOrDefaultAsync(q => q.Id == id && q.UserId == userId);
-
-            if (quest == null)
+            try
             {
-                return NotFound("Quest not found.");
+                await _mediator.Send(new DeleteQuestCommand(id, userId));
+
+                return NoContent();
             }
-
-            _context.Quests.Remove(quest);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
     }
 }

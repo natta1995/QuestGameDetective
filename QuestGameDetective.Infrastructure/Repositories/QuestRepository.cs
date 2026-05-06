@@ -61,4 +61,11 @@ public class QuestRepository : IQuestRepository
     {
         await _context.SaveChangesAsync();
     }
+
+    public async Task DeleteAsync(Quest quest)
+    {
+        _context.Quests.Remove(quest);
+
+        await _context.SaveChangesAsync();
+    }
 }
