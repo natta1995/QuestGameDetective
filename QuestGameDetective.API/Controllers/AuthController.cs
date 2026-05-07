@@ -5,6 +5,7 @@ using QuestGameDetective.API.Services;
 using QuestGameDetective.Application.Dtos.Auth;
 using MediatR;
 using QuestGameDetective.Application.Auth.Commands.Register;
+using QuestGameDetective.Application.Auth.Commands.Login;
 
 namespace QuestGameDetective.API.Controllers
 {
@@ -14,8 +15,7 @@ namespace QuestGameDetective.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly TokenService _tokenService;
+   
 
         public AuthController(
             IMediator mediator,
@@ -23,8 +23,7 @@ namespace QuestGameDetective.API.Controllers
             TokenService tokenService)
         {
             _mediator = mediator;
-            _userManager = userManager;
-            _tokenService = tokenService;
+  
         }
 
         [HttpPost("register")]
@@ -48,19 +47,18 @@ namespace QuestGameDetective.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
-            var user = await _userManager.FindByEmailAsync(dto.Email);
+            try
+            {
+                var token = await _mediator.Send(new LoginCommand(
+                    dto.Email,
+                    dto.Password));
 
-            if (user == null)
+                return Ok(token);
+            }
+            catch (Exception)
+            {
                 return Unauthorized("Invalid credentials");
-
-            var validPassword = await _userManager.CheckPasswordAsync(user, dto.Password);
-
-            if (!validPassword)
-                return Unauthorized("Invalid credentials");
-
-            var token = await _tokenService.CreateToken(user);
-
-            return Ok(token);
+            }
         }
     }
 

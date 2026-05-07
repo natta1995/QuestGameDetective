@@ -7,10 +7,14 @@ namespace QuestGameDetective.Infrastructure.Repositories;
 public class AuthRepository : IAuthRepository
 {
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly ITokenService _tokenService;
 
-    public AuthRepository(UserManager<ApplicationUser> userManager)
+    public AuthRepository(
+        UserManager<ApplicationUser> userManager,
+        ITokenService tokenService)
     {
         _userManager = userManager;
+        _tokenService = tokenService;
     }
 
     public async Task RegisterAsync(string userName, string email, string password)
@@ -27,5 +31,20 @@ public class AuthRepository : IAuthRepository
             throw new Exception(string.Join(", ", result.Errors.Select(e => e.Description)));
 
         await _userManager.AddToRoleAsync(user, "User");
+    }
+
+    public async Task<string> LoginAsync(string email, string password)
+    {
+        var user = await _userManager.FindByEmailAsync(email);
+
+        if (user == null)
+            throw new Exception("Invalid credentials");
+
+        var validPassword = await _userManager.CheckPasswordAsync(user, password);
+
+        if (!validPassword)
+            throw new Exception("Invalid credentials");
+
+        return await _tokenService.CreateToken(user);
     }
 }
