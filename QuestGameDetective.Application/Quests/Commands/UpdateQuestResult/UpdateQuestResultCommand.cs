@@ -6,5 +6,5 @@ namespace QuestGameDetective.Application.Quests.Commands.UpdateQuestResult;
 public record UpdateQuestResultCommand(
     Guid QuestId,
     string UserId,
-    string Result
-) : IRequest<QuestReadDto>;
+    int SuspectIndex
+    ) : IRequest<AccuseSuspectResultDto>;

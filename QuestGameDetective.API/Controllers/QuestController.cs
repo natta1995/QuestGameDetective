@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using MediatR;
+using QuestGameDetective.Application.Dtos.Quests;
 
 
 
@@ -81,9 +82,8 @@ namespace QuestGameDetective.API.Controllers
 
             return Ok(quest);
         }
-
-        [HttpPut("{id}/result")]
-        public async Task<IActionResult> UpdateQuestResult(Guid id, [FromBody] UpdateQuestResultDto dto)
+        [HttpPut("{id}/accuse")]
+        public async Task<IActionResult> UpdateQuestResult(Guid id, [FromBody] AccuseSuspectDto dto)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
@@ -93,7 +93,7 @@ namespace QuestGameDetective.API.Controllers
             try
             {
                 var result = await _mediator.Send(
-                    new UpdateQuestResultCommand(id, userId, dto?.Result ?? ""));
+                    new UpdateQuestResultCommand(id, userId, dto.SuspectIndex));
 
                 return Ok(result);
             }

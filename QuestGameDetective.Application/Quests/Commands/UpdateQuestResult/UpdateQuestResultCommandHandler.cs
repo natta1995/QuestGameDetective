@@ -6,7 +6,7 @@ using QuestGameDetective.Domain.Interfaces;
 namespace QuestGameDetective.Application.Quests.Commands.UpdateQuestResult;
 
 public class UpdateQuestResultCommandHandler
-    : IRequestHandler<UpdateQuestResultCommand, QuestReadDto>
+    : IRequestHandler<UpdateQuestResultCommand, AccuseSuspectResultDto>
 {
     private readonly IQuestRepository _questRepository;
 
@@ -15,14 +15,11 @@ public class UpdateQuestResultCommandHandler
         _questRepository = questRepository;
     }
 
-    public async Task<QuestReadDto> Handle(
+    public async Task<AccuseSuspectResultDto> Handle(
         UpdateQuestResultCommand request,
         CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(request.Result))
-            throw new Exception("Result is required.");
-
-        var quest = await _questRepository.GetUserQuestAsync(
+        var quest = await _questRepository.GetUserQuestWithCaseAsync(
             request.QuestId,
             request.UserId);
 
@@ -32,22 +29,19 @@ public class UpdateQuestResultCommandHandler
         if (quest.Result != QuestResult.None)
             throw new Exception("Quest result is already set.");
 
-        if (!Enum.TryParse<QuestResult>(request.Result, true, out var newResult))
-            throw new Exception("Invalid result.");
+        var isCorrect = request.SuspectIndex == quest.MurderCase.KillerIndex;
 
-        if (newResult == QuestResult.None)
-            throw new Exception("Result cannot be None.");
-
-        quest.Result = newResult;
+        quest.Result = isCorrect
+            ? QuestResult.Solved
+            : QuestResult.Failed;
 
         await _questRepository.SaveChangesAsync();
 
-        return new QuestReadDto
+        return new AccuseSuspectResultDto
         {
-            Id = quest.Id,
-            Status = quest.Status,
+            IsCorrect = isCorrect,
             Result = quest.Result,
-            AcceptedAt = quest.AcceptedAt
+            SolutionText = quest.MurderCase.SolutionText
         };
     }
 }

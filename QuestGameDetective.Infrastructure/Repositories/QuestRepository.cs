@@ -57,6 +57,13 @@ public class QuestRepository : IQuestRepository
             .FirstOrDefaultAsync(q => q.Id == questId && q.UserId == userId);
     }
 
+    public async Task<Quest?> GetUserQuestWithCaseAsync(Guid questId, string userId)
+    {
+        return await _context.Quests
+            .Include(q => q.MurderCase)
+            .FirstOrDefaultAsync(q => q.Id == questId && q.UserId == userId);
+    }
+
     public async Task SaveChangesAsync()
     {
         await _context.SaveChangesAsync();
