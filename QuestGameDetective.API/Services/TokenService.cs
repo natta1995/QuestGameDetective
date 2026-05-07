@@ -4,10 +4,11 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using QuestGameDetective.Domain.Entities;
+using QuestGameDetective.Domain.Interfaces;
 
 namespace QuestGameDetective.API.Services
 {
-    public class TokenService
+    public class TokenService : ITokenService
     {
         private readonly IConfiguration _config;
         private readonly UserManager<ApplicationUser> _userManager;

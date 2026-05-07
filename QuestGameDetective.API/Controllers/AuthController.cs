@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using QuestGameDetective.Domain.Entities;
 using QuestGameDetective.API.Services;
 using QuestGameDetective.Application.Dtos.Auth;
+using MediatR;
+using QuestGameDetective.Application.Auth.Commands.Register;
+using QuestGameDetective.Application.Auth.Commands.Login;
 
 namespace QuestGameDetective.API.Controllers
 {
@@ -11,50 +14,51 @@ namespace QuestGameDetective.API.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly TokenService _tokenService;
+        private readonly IMediator _mediator;
+   
 
-        public AuthController(UserManager<ApplicationUser> userManager, TokenService tokenService)
+        public AuthController(
+            IMediator mediator,
+            UserManager<ApplicationUser> userManager,
+            TokenService tokenService)
         {
-            _userManager = userManager;
-            _tokenService = tokenService;
+            _mediator = mediator;
+  
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto dto)
         {
-            var user = new ApplicationUser
+            try
             {
-                UserName = dto.UserName,
-                Email = dto.Email
-            };
+                await _mediator.Send(new RegisterCommand(
+                    dto.UserName,
+                    dto.Email,
+                    dto.Password));
 
-            var result = await _userManager.CreateAsync(user, dto.Password);
-
-            if (!result.Succeeded)
-                return BadRequest(result.Errors);
-
-            await _userManager.AddToRoleAsync(user, "User");
-
-            return Ok("User created");
+                return Ok("User created");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto dto)
         {
-            var user = await _userManager.FindByEmailAsync(dto.Email);
+            try
+            {
+                var token = await _mediator.Send(new LoginCommand(
+                    dto.Email,
+                    dto.Password));
 
-            if (user == null)
+                return Ok(token);
+            }
+            catch (Exception)
+            {
                 return Unauthorized("Invalid credentials");
-
-            var validPassword = await _userManager.CheckPasswordAsync(user, dto.Password);
-
-            if (!validPassword)
-                return Unauthorized("Invalid credentials");
-
-            var token = await _tokenService.CreateToken(user);
-
-            return Ok(token);
+            }
         }
     }
 

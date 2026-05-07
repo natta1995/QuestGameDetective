@@ -12,6 +12,7 @@ using QuestGameDetective.Infrastructure.Repositories;
 using QuestGameDetective.Infrastructure.Repository;
 using System.Text;
 
+
 namespace QuestGameDetective.API
 {
     public class Program
@@ -69,9 +70,11 @@ namespace QuestGameDetective.API
             builder.Services.AddMediatR(cfg =>
              cfg.RegisterServicesFromAssembly(typeof(GetAllCasesQueryHandler).Assembly));
 
+            builder.Services.AddScoped<IAuthRepository, AuthRepository>();
             builder.Services.AddScoped<IMurderCaseRepository, MurderCaseRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IQuestRepository, QuestRepository>();
+            builder.Services.AddScoped<ITokenService, TokenService>();
 
             // Services
             builder.Services.AddScoped<TokenService>();
