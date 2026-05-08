@@ -1,0 +1,310 @@
+{
+  "info": {
+    "_postman_id": "71280a00-9f88-4199-b4b7-b42d3c3e28e1",
+    "name": "QuestDetectiveGame API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52028212",
+    "_collection_link": "https://go.postman.co/collection/52028212-71280a00-9f88-4199-b4b7-b42d3c3e28e1?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "AUTH",
+      "item": [
+        {
+          "name": "[PUBLIC] - Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"johnDoe@test.se\",\r\n    \"username\": \"johnD66\",\r\n    \"password\": \"Password12!\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7060/api/auth/register",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7060",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "[PUBLIC] - Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"johnDoe@test.se\",\r\n    \"password\": \"Password12!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7060/api/auth/login",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7060",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "CASE",
+      "item": [
+        {
+          "name": "[AUTH] - Get all cases",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7060/api/cases",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7060",
+              "path": [
+                "api",
+                "cases"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "[AUTH] - Get a case by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7060/api/cases/{caseId}",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7060",
+              "path": [
+                "api",
+                "cases",
+                "{caseId}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "QUEST",
+      "item": [
+        {
+          "name": "[AUTH] - Take on quest",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7060/api/quests/accept/{caseId}",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7060",
+              "path": [
+                "api",
+                "quests",
+                "accept",
+                "{caseId}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "[AUTH] - Get my quests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7060/api/quests/mine",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7060",
+              "path": [
+                "api",
+                "quests",
+                "mine"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "[AUTH] - Get quest and case by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7060/api/quests/{questId}",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7060",
+              "path": [
+                "api",
+                "quests",
+                "{questId}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "[AUTH] - Accuse suspekt",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"suspectIndex\": 2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7060/api/quests/{questId}/accuse",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7060",
+              "path": [
+                "api",
+                "quests",
+                "{questId}",
+                "accuse"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "[AUTH] - Delete quest",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7060/api/quests/{questId}",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7060",
+              "path": [
+                "api",
+                "quests",
+                "{questId}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "USER",
+      "item": [
+        {
+          "name": "[ADMIN] - Get all users",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"natt82@yahoo.se\",\r\n    \"password\": \"Test123!\"\r\n}"
+            },
+            "url": {
+              "raw": "https://localhost:7060/api/user/users",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7060",
+              "path": [
+                "api",
+                "user",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
