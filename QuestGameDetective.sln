@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36915.13 d17.14
+VisualStudioVersion = 17.14.36915.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestGameDetective.Application", "QuestGameDetective.Application\QuestGameDetective.Application.csproj", "{853FAAB4-4770-490B-B08B-43636BA74C29}"
 EndProject
@@ -10,6 +10,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestGameDetective.Infrastructure", "QuestGameDetective.Infrastructure\QuestGameDetective.Infrastructure.csproj", "{C104AAB9-CB5D-4E63-ABEC-9B4C17B705FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestGameDetective.API", "QuestGameDetective.API\QuestGameDetective.API.csproj", "{1774402D-4229-4EAB-A88E-59A1EC535827}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
