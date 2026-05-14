@@ -26,6 +26,7 @@ public class GetQuestDetailsQueryHandler
         if (quest == null)
             return null;
 
+
         return new QuestCaseDetailDto
         {
             QuestId = quest.Id,
@@ -33,6 +34,9 @@ public class GetQuestDetailsQueryHandler
             Title = quest.MurderCase.Title,
             ShortSummary = quest.MurderCase.ShortSummary,
             Victim = quest.MurderCase.Victim,
+            VictimImg = quest.MurderCase.VictimImg,
+            CrimeSceneImg = quest.MurderCase.CrimeSceneImg,
+            ClueImg = quest.MurderCase.ClueImg,
             Place = quest.MurderCase.Place,
             CauseOfDeath = quest.MurderCase.CauseOfDeath,
             Weapon = quest.MurderCase.Weapon,
@@ -42,7 +46,10 @@ public class GetQuestDetailsQueryHandler
             Suspects = quest.MurderCase.Suspects.Select(s => new SuspectDto
             {
                 Name = s.Name,
-                Statement = s.Statement
+                Statement = s.Statement,
+                Role = s.Role,
+                SuspectImg = s.SuspectImg,
+                InInvestigatorsNotes = s.SuspectImg
             }).ToList()
         };
     }

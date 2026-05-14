@@ -13,6 +13,10 @@ public class CaseReadDto
     public string Weapon { get; set; } = "";
     public string CrimeSceneDescription { get; set; } = "";
 
+    public string VictimImg { get; set; } = "";
+    public string CrimeSceneImg { get; set; } = "";
+    public string ClueImg { get; set; } = "";
+
     public CasePriority Priority { get; set; }
 
     public List<SuspectDto> Suspects { get; set; } = new();

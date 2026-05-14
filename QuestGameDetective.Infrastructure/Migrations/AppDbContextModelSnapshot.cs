@@ -230,7 +230,15 @@ namespace QuestGameDetective.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ClueImg")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CrimeSceneDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CrimeSceneImg")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -260,6 +268,10 @@ namespace QuestGameDetective.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("VictimImg")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Weapon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -272,44 +284,19 @@ namespace QuestGameDetective.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("11111111-1111-1111-1111-111111111111"),
-                            CauseOfDeath = "A gunshot wound to the head",
-                            CrimeSceneDescription = "The library is panelled in dark oak...",
+                            CauseOfDeath = "En skottskada mot högra sidan av huvudet.",
+                            ClueImg = "housemap.png",
+                            CrimeSceneDescription = "Efter en noggrann undersökning kunde polisen inte finna några tecken på inbrott eller att någon obehörig tagit sig in i huset.\n\nVapnet identifierades snabbt som Sir Cedrics egen revolver. En tillhörande vapenkassett återfanns i skrivbordslådan.\n\nTrots detta kunde inget avskedsbrev eller annan förklaring till ett möjligt självmord hittas i vare sig biblioteket eller resten av fastigheten.\n\nInga värdesaker tycks heller ha försvunnit enligt tjänstefolket, och biblioteket visar inga tydliga spår av kamp eller genomsökning.\n\nVid första anblick framstår dödsfallet nästan som arrangerat.",
+                            CrimeSceneImg = "crimescene.png",
                             KillerIndex = 1,
-                            Place = "His private library on Kensington Row",
+                            Place = "Sir Cedric återfanns död i sitt privata bibliotek på Kensington Row strax efter klockan 18 av husets butler.",
                             Priority = 1,
-                            ShortSummary = "A wealthy gentleman is found dead in his private library.",
-                            SolutionText = "The revolver in the wrong hand makes suicide unlikely...",
-                            Title = "The Library Murder on Kensington Row",
-                            Victim = "Sir Reginald Blackwood",
-                            Weapon = "A small revolver found near his right hand."
-                        },
-                        new
-                        {
-                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
-                            CauseOfDeath = "Poisoning",
-                            CrimeSceneDescription = "...",
-                            KillerIndex = 0,
-                            Place = "The dining hall of Ashcroft Manor",
-                            Priority = 2,
-                            ShortSummary = "During a stormy night...",
-                            SolutionText = "...",
-                            Title = "The Midnight Tragedy at Ashcroft Manor",
-                            Victim = "Lord Percival Ashcroft",
-                            Weapon = "A crystal glass containing traces of arsenic"
-                        },
-                        new
-                        {
-                            Id = new Guid("33333333-3333-3333-3333-333333333333"),
-                            CauseOfDeath = "Blunt force trauma",
-                            CrimeSceneDescription = "...",
-                            KillerIndex = 3,
-                            Place = "His clockmaking shop in Covent Garden",
-                            Priority = 0,
-                            ShortSummary = "A famous clockmaker is found dead...",
-                            SolutionText = "...",
-                            Title = "The Clockmaker’s Last Hour in Covent Garden",
-                            Victim = "Mr. Tobias Wren",
-                            Weapon = "A heavy brass gear found on the floor beside the body"
+                            ShortSummary = "Den förmögne affärsmannen Sir Cedric Blackwood hittas död på golvet i sitt privata bibliotek under fredagskvällen.",
+                            SolutionText = "Sir Cedric Blackwood mördades av sin brorson Edmund Blackwood, som var svårt skuldsatt och desperat i behov av pengar.\n\nEdmund hade nyligen flyttat in i herrgårdens gästrum efter att ha lyckats vinna sin farbrors förtroende.\n\nUnder förhören försökte Edmund beskriva den gamle mannen som trött, sjuklig och nedbruten, nästan som om han ville plantera tanken om självmord hos polisen.\n\nTjänstefolket motsäger dock detta och beskriver istället Sir Cedric som arbetsam och ovanligt skärpt för sin ålder.\n\nDen avgörande detaljen återfinns på brottsplatsen. Revolvern ligger vid offrets högra hand och skottskadan sitter på höger sida av huvudet.\n\nMen på skrivbordets vänstra sida ligger både penna och tekopp placerade på ett sätt som tydligt visar att Sir Cedric var vänsterhänt.\n\nEdmund, som endast bott i huset en kortare tid, kände aldrig till detta.",
+                            Title = "Mordet i biblioteket på Kensington Row",
+                            Victim = "Sir Cedric Blackwood",
+                            VictimImg = "victim.png",
+                            Weapon = "En liten revolver återfunnen nära offrets högra hand."
                         });
                 });
 
@@ -357,7 +344,7 @@ namespace QuestGameDetective.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Label")
+                    b.Property<string>("InInvestigatorsNotes")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -368,7 +355,15 @@ namespace QuestGameDetective.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Statement")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SuspectImg")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -382,98 +377,42 @@ namespace QuestGameDetective.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("aaaaaaaa-1111-1111-1111-111111111111"),
-                            Label = "the butler",
+                            InInvestigatorsNotes = "Butlern uppträder korrekt och behärskat men blir märkbart obekväm när frågor om arv och familjekonflikter nämns.",
                             MurderCaseId = new Guid("11111111-1111-1111-1111-111111111111"),
                             Name = "Mr. Hargreaves",
-                            Statement = "..."
+                            Role = "Butlern",
+                            Statement = "Förhörsrapport:\n\n\"Jag befann mig i mitt rum på nedre våningen större delen av kvällen, sir. På fredagar brukar jag få några timmar ledigt.\n\nJag lyssnade på radion och hörde varken något skott eller något bråk. Ingen besökare kom heller till huset vad jag vet.\n\nSir Cedric brukade sitta ensam i biblioteket om kvällarna. Vid sextiden serverade jag honom som vanligt te — svart, utan socker.\"",
+                            SuspectImg = "butler.png"
                         },
                         new
                         {
                             Id = new Guid("aaaaaaaa-2222-2222-2222-222222222222"),
-                            Label = "the nephew",
+                            InInvestigatorsNotes = "Edmund försöker framstå som lugn och hjälpsam men svarar undvikande på frågor om sin ekonomi och de brev han påstår sig ha skrivit.",
                             MurderCaseId = new Guid("11111111-1111-1111-1111-111111111111"),
                             Name = "Edmund Blackwood",
-                            Statement = "..."
+                            Role = "Brorsonen",
+                            Statement = "Förhörsrapport:\n\n\"Jag tillbringade större delen av kvällen i gästrummet där jag skrev brev och försökte ordna mina affärer.\n\nMin farbror och jag hade naturligtvis våra meningsskiljaktigheter, men det hade nog vem som helst haft med en man som Sir Cedric.\n\nHan var gammal, envis och arbetade långt mer än vad hans hälsa tillät honom.\n\nJag vet inte om någon mördat honom eller om han själv valde att avsluta sitt liv.\n\nMen hushållerskan och min farbror grälade ofta. Jag hörde själv höjda röster tidigare samma morgon.\"",
+                            SuspectImg = "nephew.png"
                         },
                         new
                         {
                             Id = new Guid("aaaaaaaa-3333-3333-3333-333333333333"),
-                            Label = "the housekeeper",
+                            InInvestigatorsNotes = "Hushållerskan verkar mer irriterad över polisförhöret än över själva dödsfallet. Samtidigt beskriver hon offret med oväntad uppriktighet.",
                             MurderCaseId = new Guid("11111111-1111-1111-1111-111111111111"),
                             Name = "Mrs. Beatrice Bloom",
-                            Statement = "..."
+                            Role = "Hushållerskan",
+                            Statement = "Förhörsrapport:\n\n\"Jag förstår fortfarande inte varför jag behövde tas hit till polisstationen. Folk kommer börja prata.\n\nJa, Sir Cedric kunde vara svår att ha att göra med, men det betyder inte att jag önskade livet ur honom.\n\nHan klagade på maten nästan varje dag trots att jag lagat mat åt fina familjer i över tjugo år.\n\nBönor och bacon ville han ha till förbannelse. Inte uppskattade han min korvomelett heller.\n\nMen arbete — det kunde den mannen. Inte ens åldern verkade få honom att sakta ner.\"",
+                            SuspectImg = "housekeeper.png"
                         },
                         new
                         {
                             Id = new Guid("aaaaaaaa-4444-4444-4444-444444444444"),
-                            Label = "the neighbour",
+                            InInvestigatorsNotes = "Det framstår som osannolikt att Sir Cedric frivilligt skulle avsluta sitt liv utan tydligare motiv eller avsked.",
                             MurderCaseId = new Guid("11111111-1111-1111-1111-111111111111"),
-                            Name = "Mrs. Evelyn Ashdown",
-                            Statement = "..."
-                        },
-                        new
-                        {
-                            Id = new Guid("bbbbbbbb-1111-1111-1111-111111111111"),
-                            Label = "the widow",
-                            MurderCaseId = new Guid("22222222-2222-2222-2222-222222222222"),
-                            Name = "Lady Imogen Ashcroft",
-                            Statement = "..."
-                        },
-                        new
-                        {
-                            Id = new Guid("bbbbbbbb-2222-2222-2222-222222222222"),
-                            Label = "the family physician",
-                            MurderCaseId = new Guid("22222222-2222-2222-2222-222222222222"),
-                            Name = "Dr. Lionel Graves",
-                            Statement = "..."
-                        },
-                        new
-                        {
-                            Id = new Guid("bbbbbbbb-3333-3333-3333-333333333333"),
-                            Label = "the old friend",
-                            MurderCaseId = new Guid("22222222-2222-2222-2222-222222222222"),
-                            Name = "Colonel Barnaby Holt",
-                            Statement = "..."
-                        },
-                        new
-                        {
-                            Id = new Guid("bbbbbbbb-4444-4444-4444-444444444444"),
-                            Label = "the governess",
-                            MurderCaseId = new Guid("22222222-2222-2222-2222-222222222222"),
-                            Name = "Miss Clara Whitfield",
-                            Statement = "..."
-                        },
-                        new
-                        {
-                            Id = new Guid("cccccccc-1111-1111-1111-111111111111"),
-                            Label = "the client",
-                            MurderCaseId = new Guid("33333333-3333-3333-3333-333333333333"),
-                            Name = "Madame Valérie DuPont",
-                            Statement = "..."
-                        },
-                        new
-                        {
-                            Id = new Guid("cccccccc-2222-2222-2222-222222222222"),
-                            Label = "the apprentice",
-                            MurderCaseId = new Guid("33333333-3333-3333-3333-333333333333"),
-                            Name = "Arthur Bellamy",
-                            Statement = "..."
-                        },
-                        new
-                        {
-                            Id = new Guid("cccccccc-3333-3333-3333-333333333333"),
-                            Label = "the officer",
-                            MurderCaseId = new Guid("33333333-3333-3333-3333-333333333333"),
-                            Name = "Inspector Harold Briggs",
-                            Statement = "..."
-                        },
-                        new
-                        {
-                            Id = new Guid("cccccccc-4444-4444-4444-444444444444"),
-                            Label = "the landlord",
-                            MurderCaseId = new Guid("33333333-3333-3333-3333-333333333333"),
-                            Name = "Mrs. Adelaide Finch",
-                            Statement = "..."
+                            Name = "Sir Cedric Blackwood",
+                            Role = "Offret",
+                            Statement = "Polisens anteckningar:\n\nKan Sir Cedric Blackwood ha tagit sitt eget liv?\n\nNågot avskedsbrev har inte återfunnits och inget på brottsplatsen tyder på desperation eller förberedelser inför självmord.\n\nOffrets husläkare uppger att Sir Cedric nyligen sökt vård för åldersrelaterade besvär och försämrad hälsa, men ingen allvarlig diagnos hade fastställts.\n\nTrots sitt tillbakadragna sätt beskrivs han av tjänstefolket som disciplinerad, skarp och starkt fäst vid sitt arbete.\n\nSamtliga personer som bott under Sir Cedrics tak tycks bära på egna konflikter, ekonomiska problem eller personliga hemligheter.",
+                            SuspectImg = "victim.png"
                         });
                 });
 

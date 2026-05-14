@@ -17,6 +17,10 @@ namespace QuestGameDetective.Application.Dtos.Quest
         public string Weapon { get; set; } = string.Empty;
         public string CrimeSceneDescription { get; set; } = string.Empty;
 
+        public string VictimImg { get; set; } = "";
+        public string CrimeSceneImg { get; set; } = "";
+        public string ClueImg { get; set; } = "";
+
         // 🎮 Spelarens progress
         public QuestStatus Status { get; set; }
         public QuestResult Result { get; set; }
