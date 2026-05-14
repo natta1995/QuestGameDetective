@@ -65,6 +65,9 @@ namespace QuestGameDetective.Infrastructure.Migrations
                     Weapon = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CrimeSceneDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SolutionText = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VictimImg = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CrimeSceneImg = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ClueImg = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Priority = table.Column<int>(type: "int", nullable: false),
                     KillerIndex = table.Column<int>(type: "int", nullable: false)
                 },
@@ -210,8 +213,10 @@ namespace QuestGameDetective.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Label = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Statement = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SuspectImg = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InInvestigatorsNotes = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MurderCaseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -227,31 +232,18 @@ namespace QuestGameDetective.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "MurderCases",
-                columns: new[] { "Id", "CauseOfDeath", "CrimeSceneDescription", "KillerIndex", "Place", "Priority", "ShortSummary", "SolutionText", "Title", "Victim", "Weapon" },
-                values: new object[,]
-                {
-                    { new Guid("11111111-1111-1111-1111-111111111111"), "A gunshot wound to the head", "The library is panelled in dark oak...", 1, "His private library on Kensington Row", 1, "A wealthy gentleman is found dead in his private library.", "The revolver in the wrong hand makes suicide unlikely...", "The Library Murder on Kensington Row", "Sir Reginald Blackwood", "A small revolver found near his right hand." },
-                    { new Guid("22222222-2222-2222-2222-222222222222"), "Poisoning", "...", 0, "The dining hall of Ashcroft Manor", 2, "During a stormy night...", "...", "The Midnight Tragedy at Ashcroft Manor", "Lord Percival Ashcroft", "A crystal glass containing traces of arsenic" },
-                    { new Guid("33333333-3333-3333-3333-333333333333"), "Blunt force trauma", "...", 3, "His clockmaking shop in Covent Garden", 0, "A famous clockmaker is found dead...", "...", "The Clockmaker’s Last Hour in Covent Garden", "Mr. Tobias Wren", "A heavy brass gear found on the floor beside the body" }
-                });
+                columns: new[] { "Id", "CauseOfDeath", "ClueImg", "CrimeSceneDescription", "CrimeSceneImg", "KillerIndex", "Place", "Priority", "ShortSummary", "SolutionText", "Title", "Victim", "VictimImg", "Weapon" },
+                values: new object[] { new Guid("11111111-1111-1111-1111-111111111111"), "En skottskada mot högra sidan av huvudet.", "housemap.png", "Efter en noggrann undersökning kunde polisen inte finna några tecken på inbrott eller att någon obehörig tagit sig in i huset.\n\nVapnet identifierades snabbt som Sir Cedrics egen revolver. En tillhörande vapenkassett återfanns i skrivbordslådan.\n\nTrots detta kunde inget avskedsbrev eller annan förklaring till ett möjligt självmord hittas i vare sig biblioteket eller resten av fastigheten.\n\nInga värdesaker tycks heller ha försvunnit enligt tjänstefolket, och biblioteket visar inga tydliga spår av kamp eller genomsökning.\n\nVid första anblick framstår dödsfallet nästan som arrangerat.", "crimescene.png", 1, "Sir Cedric återfanns död i sitt privata bibliotek på Kensington Row strax efter klockan 18 av husets butler.", 1, "Den förmögne affärsmannen Sir Cedric Blackwood hittas död på golvet i sitt privata bibliotek under fredagskvällen.", "Sir Cedric Blackwood mördades av sin brorson Edmund Blackwood, som var svårt skuldsatt och desperat i behov av pengar.\n\nEdmund hade nyligen flyttat in i herrgårdens gästrum efter att ha lyckats vinna sin farbrors förtroende.\n\nUnder förhören försökte Edmund beskriva den gamle mannen som trött, sjuklig och nedbruten, nästan som om han ville plantera tanken om självmord hos polisen.\n\nTjänstefolket motsäger dock detta och beskriver istället Sir Cedric som arbetsam och ovanligt skärpt för sin ålder.\n\nDen avgörande detaljen återfinns på brottsplatsen. Revolvern ligger vid offrets högra hand och skottskadan sitter på höger sida av huvudet.\n\nMen på skrivbordets vänstra sida ligger både penna och tekopp placerade på ett sätt som tydligt visar att Sir Cedric var vänsterhänt.\n\nEdmund, som endast bott i huset en kortare tid, kände aldrig till detta.", "Mordet i biblioteket på Kensington Row", "Sir Cedric Blackwood", "victim.png", "En liten revolver återfunnen nära offrets högra hand." });
 
             migrationBuilder.InsertData(
                 table: "Suspects",
-                columns: new[] { "Id", "Label", "MurderCaseId", "Name", "Statement" },
+                columns: new[] { "Id", "InInvestigatorsNotes", "MurderCaseId", "Name", "Role", "Statement", "SuspectImg" },
                 values: new object[,]
                 {
-                    { new Guid("aaaaaaaa-1111-1111-1111-111111111111"), "the butler", new Guid("11111111-1111-1111-1111-111111111111"), "Mr. Hargreaves", "..." },
-                    { new Guid("aaaaaaaa-2222-2222-2222-222222222222"), "the nephew", new Guid("11111111-1111-1111-1111-111111111111"), "Edmund Blackwood", "..." },
-                    { new Guid("aaaaaaaa-3333-3333-3333-333333333333"), "the housekeeper", new Guid("11111111-1111-1111-1111-111111111111"), "Mrs. Beatrice Bloom", "..." },
-                    { new Guid("aaaaaaaa-4444-4444-4444-444444444444"), "the neighbour", new Guid("11111111-1111-1111-1111-111111111111"), "Mrs. Evelyn Ashdown", "..." },
-                    { new Guid("bbbbbbbb-1111-1111-1111-111111111111"), "the widow", new Guid("22222222-2222-2222-2222-222222222222"), "Lady Imogen Ashcroft", "..." },
-                    { new Guid("bbbbbbbb-2222-2222-2222-222222222222"), "the family physician", new Guid("22222222-2222-2222-2222-222222222222"), "Dr. Lionel Graves", "..." },
-                    { new Guid("bbbbbbbb-3333-3333-3333-333333333333"), "the old friend", new Guid("22222222-2222-2222-2222-222222222222"), "Colonel Barnaby Holt", "..." },
-                    { new Guid("bbbbbbbb-4444-4444-4444-444444444444"), "the governess", new Guid("22222222-2222-2222-2222-222222222222"), "Miss Clara Whitfield", "..." },
-                    { new Guid("cccccccc-1111-1111-1111-111111111111"), "the client", new Guid("33333333-3333-3333-3333-333333333333"), "Madame Valérie DuPont", "..." },
-                    { new Guid("cccccccc-2222-2222-2222-222222222222"), "the apprentice", new Guid("33333333-3333-3333-3333-333333333333"), "Arthur Bellamy", "..." },
-                    { new Guid("cccccccc-3333-3333-3333-333333333333"), "the officer", new Guid("33333333-3333-3333-3333-333333333333"), "Inspector Harold Briggs", "..." },
-                    { new Guid("cccccccc-4444-4444-4444-444444444444"), "the landlord", new Guid("33333333-3333-3333-3333-333333333333"), "Mrs. Adelaide Finch", "..." }
+                    { new Guid("aaaaaaaa-1111-1111-1111-111111111111"), "Butlern uppträder korrekt och behärskat men blir märkbart obekväm när frågor om arv och familjekonflikter nämns.", new Guid("11111111-1111-1111-1111-111111111111"), "Mr. Hargreaves", "Butlern", "Förhörsrapport:\n\n\"Jag befann mig i mitt rum på nedre våningen större delen av kvällen, sir. På fredagar brukar jag få några timmar ledigt.\n\nJag lyssnade på radion och hörde varken något skott eller något bråk. Ingen besökare kom heller till huset vad jag vet.\n\nSir Cedric brukade sitta ensam i biblioteket om kvällarna. Vid sextiden serverade jag honom som vanligt te — svart, utan socker.\"", "butler.png" },
+                    { new Guid("aaaaaaaa-2222-2222-2222-222222222222"), "Edmund försöker framstå som lugn och hjälpsam men svarar undvikande på frågor om sin ekonomi och de brev han påstår sig ha skrivit.", new Guid("11111111-1111-1111-1111-111111111111"), "Edmund Blackwood", "Brorsonen", "Förhörsrapport:\n\n\"Jag tillbringade större delen av kvällen i gästrummet där jag skrev brev och försökte ordna mina affärer.\n\nMin farbror och jag hade naturligtvis våra meningsskiljaktigheter, men det hade nog vem som helst haft med en man som Sir Cedric.\n\nHan var gammal, envis och arbetade långt mer än vad hans hälsa tillät honom.\n\nJag vet inte om någon mördat honom eller om han själv valde att avsluta sitt liv.\n\nMen hushållerskan och min farbror grälade ofta. Jag hörde själv höjda röster tidigare samma morgon.\"", "nephew.png" },
+                    { new Guid("aaaaaaaa-3333-3333-3333-333333333333"), "Hushållerskan verkar mer irriterad över polisförhöret än över själva dödsfallet. Samtidigt beskriver hon offret med oväntad uppriktighet.", new Guid("11111111-1111-1111-1111-111111111111"), "Mrs. Beatrice Bloom", "Hushållerskan", "Förhörsrapport:\n\n\"Jag förstår fortfarande inte varför jag behövde tas hit till polisstationen. Folk kommer börja prata.\n\nJa, Sir Cedric kunde vara svår att ha att göra med, men det betyder inte att jag önskade livet ur honom.\n\nHan klagade på maten nästan varje dag trots att jag lagat mat åt fina familjer i över tjugo år.\n\nBönor och bacon ville han ha till förbannelse. Inte uppskattade han min korvomelett heller.\n\nMen arbete — det kunde den mannen. Inte ens åldern verkade få honom att sakta ner.\"", "housekeeper.png" },
+                    { new Guid("aaaaaaaa-4444-4444-4444-444444444444"), "Det framstår som osannolikt att Sir Cedric frivilligt skulle avsluta sitt liv utan tydligare motiv eller avsked.", new Guid("11111111-1111-1111-1111-111111111111"), "Sir Cedric Blackwood", "Offret", "Polisens anteckningar:\n\nKan Sir Cedric Blackwood ha tagit sitt eget liv?\n\nNågot avskedsbrev har inte återfunnits och inget på brottsplatsen tyder på desperation eller förberedelser inför självmord.\n\nOffrets husläkare uppger att Sir Cedric nyligen sökt vård för åldersrelaterade besvär och försämrad hälsa, men ingen allvarlig diagnos hade fastställts.\n\nTrots sitt tillbakadragna sätt beskrivs han av tjänstefolket som disciplinerad, skarp och starkt fäst vid sitt arbete.\n\nSamtliga personer som bott under Sir Cedrics tak tycks bära på egna konflikter, ekonomiska problem eller personliga hemligheter.", "victim.png" }
                 });
 
             migrationBuilder.CreateIndex(

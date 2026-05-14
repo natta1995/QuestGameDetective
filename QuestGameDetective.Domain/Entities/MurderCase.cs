@@ -16,12 +16,18 @@ namespace QuestGameDetective.Domain.Entities
         public string CrimeSceneDescription { get; set; } = "";
         public string SolutionText { get; set; } = "";
 
+        // Img 
+
+        public string VictimImg { get; set; } = "";
+        public string CrimeSceneImg { get; set; } = "";
+        public string ClueImg { get; set; } = "";
+
+
+
         public CasePriority Priority { get; set; } = CasePriority.Medium;
         public int KillerIndex { get; set; } = -1;
 
         public List<Suspect> Suspects { get; set; } = new();
 
-        // Väntar med denna, oklart om den skall vara med
-        //public List<string> Clues { get; set; } = new();
     }
 }
