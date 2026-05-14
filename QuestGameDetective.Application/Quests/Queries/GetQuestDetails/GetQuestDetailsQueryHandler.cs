@@ -49,7 +49,7 @@ public class GetQuestDetailsQueryHandler
                 Statement = s.Statement,
                 Role = s.Role,
                 SuspectImg = s.SuspectImg,
-                InInvestigatorsNotes = s.SuspectImg
+                InInvestigatorsNotes = s.InInvestigatorsNotes
             }).ToList()
         };
     }
