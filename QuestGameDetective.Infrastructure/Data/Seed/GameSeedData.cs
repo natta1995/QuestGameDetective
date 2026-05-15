@@ -7,14 +7,13 @@ namespace QuestGameDetective.Infrastructure.Data.Seed
     {
         public static readonly MurderCase[] MurderCases =
         {
-            LibraryMurderSeed.Case
-            //AshcroftManorSeed.Case,
-            //ClockmakerSeed.Case
+            LibraryMurderSeed.Case,
+            NightTrainMurderSeed.Case
         };
 
         public static readonly Suspect[] Suspects =
             LibraryMurderSeed.Suspects
-                //.Concat(AshcroftManorSeed.Suspects)
+                .Concat(NightTrainMurderSeed.Suspects)
                 //.Concat(ClockmakerSeed.Suspects)
                 .ToArray();
     }
