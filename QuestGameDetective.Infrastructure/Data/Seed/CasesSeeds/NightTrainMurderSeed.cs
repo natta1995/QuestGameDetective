@@ -64,12 +64,12 @@ namespace QuestGameDetective.Infrastructure.Data.Seed.CaseSeeds
 
                 
 
-            KillerIndex = 0
+            KillerIndex = 3
         };
 
         public static readonly Suspect[] Suspects =
         {
-            new Suspect // Killer
+            new Suspect 
             {
                 Id = Guid.Parse("bbbbbbbb-1111-1111-1111-111111111111"),
 
@@ -159,7 +159,7 @@ namespace QuestGameDetective.Infrastructure.Data.Seed.CaseSeeds
                     "Harold Finch verkar ovanligt oberörd av situationen men hans berättelse förblir konsekvent under samtliga förhör."
             },
 
-            new Suspect
+            new Suspect // KILLER
             {
                 Id = Guid.Parse("bbbbbbbb-4444-4444-4444-444444444444"),
 

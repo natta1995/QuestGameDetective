@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuestGameDetective.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using QuestGameDetective.Infrastructure.Data;
 namespace QuestGameDetective.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260515134926_UpdatedCaseContent")]
+    partial class UpdatedCaseContent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -305,7 +308,7 @@ namespace QuestGameDetective.Infrastructure.Migrations
                             ClueImg = "trainbag.png",
                             CrimeSceneDescription = "Kupédörren hade varit låst från insidan under större delen av natten och inga vittnen har sett någon lämna eller komma in.\n\nEndast fyra personer befann sig i kupén under resan: offret, Lady Eleanor Whitmore, hennes tjänsteflicka Clara Bennett samt den äldre pensionerade handelsmannen Harold Finch.\n\nOffret skall ha varit först i kupen och då luktat starkt av alkohol, han var då vi liv och hälsade men anningen sluddrigt när de andra klev in.\n\nTrots offrets enkla klädsel reste han i förstaklass, något flera vittnen på tåget beskrivit som ovanligt.\n\nIngen av de närvarande tycks känna offret sedan tidigare och samtliga hävdar att mannen var talförd och satt och läste tidningen när tåget lämnade London.",
                             CrimeSceneImg = "traincrime.png",
-                            KillerIndex = 3,
+                            KillerIndex = 0,
                             Place = "Arthur Miller återfanns livlös i sin sittplats ombord på nattåget mot Edinburgh strax före gryningen.",
                             Priority = 2,
                             ShortSummary = "En man återfinns död i en förstaklasskupé under nattresan mellan London och Skottland.",
@@ -314,23 +317,6 @@ namespace QuestGameDetective.Infrastructure.Migrations
                             Victim = "Arthur Miller",
                             VictimImg = "victim_train.png",
                             Weapon = "Gift som injicerats i offrets högra arm."
-                        },
-                        new
-                        {
-                            Id = new Guid("44444444-4444-4444-4444-444444444444"),
-                            CauseOfDeath = "Akut arsenikförgiftning.",
-                            ClueImg = "tablebedroom.png",
-                            CrimeSceneDescription = "Den vanliga söndagsmiddagen ägde rum i den stora matsalen på Ravenshire Manor.\n\nNär huvudrätten serverades tog Charlotte Ashbourne några klunkar ur sitt vinglas innan hon plötsligt tappade andan och föll ihop över bordet.\n\nFamiljens läkare, som anlände kort därefter, kunde snabbt konstatera att döden orsakats av arsenik.\n\nPolisen fann inga tecken på att giftet funnits i maten. Endast offrets vinglas innehöll spår av arsenik.\n\nVid bordet satt offrets föräldrar, hennes två systrar, hennes bror, offrets fästman samt systern Eleanors fästman, som var sen till middagen.\n\nFlera av de medverkande vid bordet kunde strykas som misstänkta direkt på plats.\n\nIngen i familjen beskriver middagen som särskilt konfliktfylld — men nästan samtliga medger att relationen till Charlotte stundtals varit komplicerad.",
-                            CrimeSceneImg = "familydinnercrime.png",
-                            KillerIndex = 1,
-                            Place = "Charlotte Ashbourne avled vid middagsbordet i familjens herrgård strax efter att huvudrätten serverats.",
-                            Priority = 2,
-                            ShortSummary = "Under en stillsam familjemiddag faller den yngsta dottern plötsligt död ner efter att ha druckit ur sitt vinglas.",
-                            SolutionText = "Charlotte Ashbourne mördades av sin syster Eleanor Ashbourne.\n\nEleanor hade levt ett helt liv i skuggan av sin syster, som alltid varit familjens favorit och faderns ögonsten.\n\nMen när Charlotte inledde en relation med Arthur och planerade att rymma ihop, fick Eleanor nog och inskaffade arsenik.\n\nPå Eleanors finger upptäcktes en ring med ett dolt fack där hon förvarat giftet. Redan innan middagen smet hon förbi och hällde pulvret i systerns glas.\n\nCharlotte drack av vinet först när köträtten serverades.\n\nI Charlottes rum syntes tydliga tecken på att hon planerat att lämna familjens herrgård.\n\nPå Arthurs skjortkrage återfanns spår av samma röda läppstift som Charlotte bar under kvällen.\n\nUnder det avslutande förhöret bröt Eleanor slutligen samman och erkände mordet.",
-                            Title = "Familjemiddags mordet på Ravenshire Manor",
-                            Victim = "Charlotte Ashbourne",
-                            VictimImg = "youngsistervictim.png",
-                            Weapon = "Förgiftning - Arsenik blandat i offrets vinglas."
                         });
                 });
 
@@ -487,46 +473,6 @@ namespace QuestGameDetective.Infrastructure.Migrations
                             Role = "Offret",
                             Statement = "Polisens anteckningar:\n\nArthur Miller bodde ensam i en mindre enrummare utanför London och arbetade sen en tid tillbaka i en bokaffär.\n\nHans ekomomi var mycket stram och gav inga möjligheter till annant än det nödvänigaste\n\nI hemmet återfanns knappa personliga tillhörigheter men ett stor antal böcker, uppskattningsvis 20-30 stycken fanns under hans säng.\n\nEfter samtal med en mycket upprörd arbetsgivare visade det sig att samtliga böcker tagits ifrån hans affär under loppet av fyra år.\n\nNästan alla böckerna var deckare, eller fackliteratur för krimonolgogi i olika former. Inga pengar hittades i bostade.",
                             SuspectImg = "victim_train.png"
-                        },
-                        new
-                        {
-                            Id = new Guid("dddddddd-1111-1111-1111-111111111111"),
-                            InInvestigatorsNotes = "Jonathan uppträder arrogant men verkar samtidigt genuint chockad över systerns död.",
-                            MurderCaseId = new Guid("44444444-4444-4444-4444-444444444444"),
-                            Name = "Jonathan Ashbourne",
-                            Role = "Brodern",
-                            Statement = "Förhörsrapport:\n\n\"Charlotte och jag stod aldrig varandra särskilt nära. Hon var yngst. Kom undan med allt. Allt hon pekade på skulle hon ha.\n\nHon har alltid varit mors favorit, och far skall vi inte prata om. Han dyrkade marken hon gick på. Jag vill inte ens veta hur mycket pengar han slängt på henne.\n\nMina föräldrar är redan gamla och sjuka, detta kommer väl ta livet av dem.\n\nJag? Mörda henne? Vad skulle jag vinna på det? Förresten reste jag mig aldrig från bordet under middagen och jag rörde inte hennes glas.\n\nJa, jag spelar ibland. Men det betyder inte att jag är en mördare.\"",
-                            SuspectImg = "dinnerbrother.png"
-                        },
-                        new
-                        {
-                            Id = new Guid("dddddddd-2222-2222-2222-222222222222"),
-                            InInvestigatorsNotes = "Eleanor framstår som känslomässigt instabil men saklig. Hon mjuknar när hon pratar om sin far.",
-                            MurderCaseId = new Guid("44444444-4444-4444-4444-444444444444"),
-                            Name = "Eleanor Ashbourne",
-                            Role = "Mellersta systern",
-                            Statement = "Förhörsrapport:\n\n\"Charlotte hade ett sätt att alltid få allt att handla om henne.\n\nMor och far avgudade henne nästan. Det är nästan skrattretande hur de kunde se henne som någon slags ängel.\n\nMen trots våra meningsskiljaktigheter var hon fortfarande min syster.\n\nJag gick visserligen bort mot serveringsbordet under middagen men bara för att hämta mer vin.\n\nNär jag kom tillbaka började far hosta igen och sedan… sedan föll Charlotte ihop.\"",
-                            SuspectImg = "sister1.png"
-                        },
-                        new
-                        {
-                            Id = new Guid("dddddddd-3333-3333-3333-333333333333"),
-                            InInvestigatorsNotes = "Thomas verkar uppriktigt skakad men flera familjemedlemmar beskriver relationen som mindre lycklig än han själv påstår.",
-                            MurderCaseId = new Guid("44444444-4444-4444-4444-444444444444"),
-                            Name = "Thomas Whitmore",
-                            Role = "Fästmannen",
-                            Statement = "Förhörsrapport:\n\n\"Charlotte och jag skulle gifta oss innan årets slut, det var tanken i alla fall.\n\nVi har grälat en del det sista. Jag tycker hon trycker bort mig. Ibland vet jag inte vad hon vill.\n\nMen jag älskade verkligen Charlotte. Jag vet inte om jag kan leva vidare utan henne i denna värld. Jag skulle aldrig göra henne illa.\n\nJag satt intill henne hela middagen. Men jag såg ingen lägga något i hennes glas. Men det är ju inte heller sådant man tänker på i vanliga fall.\n\nJag vet bara att hon plötsligt började hosta. Det gick så fort och sedan var hon bara död.\"",
-                            SuspectImg = "tablefiance.png"
-                        },
-                        new
-                        {
-                            Id = new Guid("dddddddd-4444-4444-4444-444444444444"),
-                            InInvestigatorsNotes = "Margaret verkar nervös men hennes berättelse förblir konsekvent genom hela utredningen.",
-                            MurderCaseId = new Guid("44444444-4444-4444-4444-444444444444"),
-                            Name = "Margaret Ashbourne",
-                            Role = "Äldre systern",
-                            Statement = "Förhörsrapport:\n\n\"Jag vill bara att det här skall vara över. Charlotte kunde vara hård men hon förtjänade inte det här.\n\nBortskämd? Ja, det kan man väl säga. Hon fick vad hon pekade på. Men det var mer mina föräldrars fel än hennes i så fall.\n\nJag såg Eleanor lämna bordet en kort stund. Hon sade att hon skulle hämta vin men jag tror snarare att hon var upprörd och hade svårt att sitta still.\n\nHennes fästman Arthur skulle varit med, men han var sen. Inte förrän vi börjat äta huvudrätten kom han in genom dörren.\n\nIngen av mina systrar tycks vara särskilt lyckliga i sina kärleksrelationer. Och folk frågar varför jag vill förbli ogift.\"",
-                            SuspectImg = "bigsister2.png"
                         });
                 });
 
