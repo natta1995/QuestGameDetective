@@ -52,40 +52,40 @@ namespace QuestGameDetective.Infrastructure.Data.Seed.CaseSeeds
             Place = "Brottet begicks i offrets egen bostad, närmare bestämt i biblioteket.",
 
             CrimeSceneDescription =
-                "Lord Cedric Blackwood påträffades död i sitt privata bibliotek av husets butler omkring halv nio på aftonen. Polisen anlände till herrgården kort därefter.\n\n" +
+                "Lord Cedric Blackwood påträffades död i sitt privata bibliotek av husets butler omkring halv nio på aftonen. Polisen anlände till herrgården kort därefter.\n" +
 
-                "Den avlidne låg livlös vid sitt skrivbord med en skottskada mot huvudet. Intill offrets högra hand återfanns en revolver, senare identifierad som tillhörande Lord Blackwood själv. (Se brottsplatsfotografi.)\n\n" +
+                "Den avlidne låg livlös vid sitt skrivbord med en skottskada mot huvudet. Intill offrets högra hand återfanns en revolver, senare identifierad som tillhörande Lord Blackwood själv. (Se brottsplatsfotografi.)\n" +
 
-                "Vapnets hölster återfanns i den översta byrålådan i biblioteket, vilket antyder att revolvern nyligen tagits fram.\n\n" +
+                "Vapnets hölster återfanns i den översta byrålådan i biblioteket, vilket antyder att revolvern nyligen tagits fram.\n" +
 
-                "Biblioteket uppvisade inga tydliga tecken på strid, inbrott eller annan våldsam oordning. Detsamma gällde övriga delar av bostaden.\n\n" +
+                "Biblioteket uppvisade inga tydliga tecken på strid, inbrott eller annan våldsam oordning. Detsamma gällde övriga delar av bostaden.\n" +
 
-                "På golvet bakom skrivbordet återfanns dessutom ett handskrivet brev, vilket vid första anblick förefaller vara ett självmordsbrev. (Se fotografi — bevismaterial.)\n\n" +
+                "På golvet bakom skrivbordet återfanns dessutom ett handskrivet brev, vilket vid första anblick förefaller vara ett självmordsbrev. (Se fotografi — bevismaterial.)\n" +
 
                 "Trots detta framstår flera detaljer på brottsplatsen som märkligt arrangerade, vilket väcker misstanke om att dödsfallet inte är fullt så enkelt som det först verkar.",
 
             SolutionText =
-                "Lord Cedric Blackwood mördades av sin brorson Edmund Blackwood, som under en längre tid dragit på sig betydande skulder och såg sin farbror som sin sista möjlighet till ekonomisk räddning.\n\n" +
+                "Lord Cedric Blackwood mördades av sin brorson Edmund Blackwood, som under en längre tid dragit på sig betydande skulder och såg sin farbror som sin sista möjlighet till ekonomisk räddning.\n" +
 
-                "Utredningen tog en avgörande vändning när det framkom att Lord Blackwood var vänsterhänt. På både skrivbordet och i övriga delar av biblioteket återfanns personliga föremål konsekvent placerade till vänster om honom.\n\n" +
+                "Utredningen tog en avgörande vändning när det framkom att Lord Blackwood var vänsterhänt. På både skrivbordet och i övriga delar av biblioteket återfanns personliga föremål konsekvent placerade till vänster om honom.\n" +
 
-                "Trots detta återfanns revolvern intill offrets högra hand, och skottskadan tydde på att vapnet avfyrats från höger sida.\n\n" +
+                "Trots detta återfanns revolvern intill offrets högra hand, och skottskadan tydde på att vapnet avfyrats från höger sida.\n" +
 
-                "Det handskrivna självmordsbrevet visade dessutom tydliga tecken på att ha skrivits av någon som använt höger hand.\n\n" +
+                "Det handskrivna självmordsbrevet visade dessutom tydliga tecken på att ha skrivits av någon som använt höger hand.\n" +
 
-                "De övriga misstänkta hade alla arbetat eller levt nära Lord Blackwood under många års tid och kände väl till hans vänsterhänthet. Edmund däremot hade endast vistats i huset under en kortare period.\n\n" +
+                "De övriga misstänkta hade alla arbetat eller levt nära Lord Blackwood under många års tid och kände väl till hans vänsterhänthet. Edmund däremot hade endast vistats i huset under en kortare period.\n" +
 
                 "Sammantaget pekar bevisningen mot att brottsplatsen medvetet arrangerats för att efterlikna ett självmord.",
 
             SolutionClues =
 
-                "• På flera fotografier syns att Lord Blackwood konsekvent använde vänster hand vid skrivande och tedrickande.\n\n" +
+                "• På flera fotografier syns att Lord Blackwood konsekvent använde vänster hand vid skrivande och tedrickande.\n" +
 
-                "• På brottsplatsfotografiet återfanns revolvern placerad nära offrets högra hand trots att offret var vänsterhänt.\n\n" +
+                "• På brottsplatsfotografiet återfanns revolvern placerad nära offrets högra hand trots att offret var vänsterhänt.\n" +
 
-                "• Självmordsbrevet uppvisar tydliga drag av att ha skrivits av en högerhänt person.\n\n" +
+                "• Självmordsbrevet uppvisar tydliga drag av att ha skrivits av en högerhänt person.\n" +
 
-                "• De övriga misstänkta hade känt Lord Blackwood i många år och var väl medvetna om hans vänsterhänthet.\n\n" +
+                "• De övriga misstänkta hade känt Lord Blackwood i många år och var väl medvetna om hans vänsterhänthet.\n" +
 
                 "• Edmund Blackwood hade endast vistats i huset under en kortare tid och saknade samma kännedom om offrets vanor.",
 
@@ -115,25 +115,25 @@ namespace QuestGameDetective.Infrastructure.Data.Seed.CaseSeeds
                 SuspectImg = "butler.png",
 
                 Statement =
-                    "Förhörsrapport:\n\n" +
+                    "Förhörsrapport:\n" +
 
-                    "\"Jag befann mig i mitt rum på nedre våningen större delen av aftonen, sir. På fredagar brukar jag erhålla några timmars ledighet.\n\n" +
+                    "\"Jag befann mig i mitt rum på nedre våningen större delen av aftonen, sir. På fredagar brukar jag erhålla några timmars ledighet.\n" +
 
-                    "I vanliga fall hade jag tagit mig en promenad till den lokala puben, men sedan min syster insjuknade går större delen av min lön till hennes uppehälle.\n\n" +
+                    "I vanliga fall hade jag tagit mig en promenad till den lokala puben, men sedan min syster insjuknade går större delen av min lön till hennes uppehälle.\n" +
 
-                    "Hon blev änka tidigare i år, och inte långt därefter stupade hennes ende son i kriget. Nu är hon så svag att hon knappt förmår lämna sin säng.\n\n" +
+                    "Hon blev änka tidigare i år, och inte långt därefter stupade hennes ende son i kriget. Nu är hon så svag att hon knappt förmår lämna sin säng.\n" +
 
-                    "Jag hade önskat flytta ned till Brighton för att finna arbete där och ta hand om henne, men Lord Blackwood vägrar låta mig lämna min tjänst.\n\n" +
+                    "Jag hade önskat flytta ned till Brighton för att finna arbete där och ta hand om henne, men Lord Blackwood vägrar låta mig lämna min tjänst.\n" +
 
-                    "Utan ett ordentligt rekommendationsbrev från min arbetsgivare lär ingen vilja anställa mig.\n\n" +
+                    "Utan ett ordentligt rekommendationsbrev från min arbetsgivare lär ingen vilja anställa mig.\n" +
 
-                    "Men kanske nu… efter alla dessa år i hans tjänst. Kanske kommer min lojalitet äntligen att betyda något.\n\n" +
+                    "Men kanske nu… efter alla dessa år i hans tjänst. Kanske kommer min lojalitet äntligen att betyda något.\n" +
 
-                    "Mörda honom? Nej, sir — absolut inte. Lord Blackwood må ha varit en egendomlig herre, men någon ond man var han inte.\n\n" +
+                    "Mörda honom? Nej, sir — absolut inte. Lord Blackwood må ha varit en egendomlig herre, men någon ond man var han inte.\n" +
 
-                    "Ja, det var jag som fann honom. Eftersom jag ändå stannade inne den kvällen gick jag upp till biblioteket med en kopp te vid halv åtta.\n\n" +
+                    "Ja, det var jag som fann honom. Eftersom jag ändå stannade inne den kvällen gick jag upp till biblioteket med en kopp te vid halv åtta.\n" +
 
-                    "Och där låg han redan död.\n\n" +
+                    "Och där låg han redan död.\n" +
 
                     "Jag hörde inget skott under aftonen, men radion stod på större delen av eftermiddagen. Dessutom är huset mycket väl ljudisolerat.\"",
 
@@ -161,23 +161,23 @@ namespace QuestGameDetective.Infrastructure.Data.Seed.CaseSeeds
                 SuspectImg = "nephew.png",
 
                 Statement =
-                    "Förhörsrapport:\n\n" +
+                    "Förhörsrapport:\n" +
 
-                    "\"Jag tillbringade större delen av aftonen i mitt rum, där jag skrev brev och ordnade vissa personliga angelägenheter.\n\n" +
+                    "\"Jag tillbringade större delen av aftonen i mitt rum, där jag skrev brev och ordnade vissa personliga angelägenheter.\n" +
 
-                    "Inte för att det egentligen angår er, sir, men jag har flera betydande affärer under uppsegling. Min far, liksom min farfar före honom, var båda framstående män inom affärsvärlden.\n\n" +
+                    "Inte för att det egentligen angår er, sir, men jag har flera betydande affärer under uppsegling. Min far, liksom min farfar före honom, var båda framstående män inom affärsvärlden.\n" +
 
-                    "Vem jag skrev till är av privat natur och har inget med denna utredning att göra.\n\n" +
+                    "Vem jag skrev till är av privat natur och har inget med denna utredning att göra.\n" +
 
-                    "Att jag skulle ha mördat min farbror är fullständigt befängt. Lord Cedric tog emot mig i sitt hem efter att relationen mellan min far och mig blivit... ansträngd.\n\n" +
+                    "Att jag skulle ha mördat min farbror är fullständigt befängt. Lord Cedric tog emot mig i sitt hem efter att relationen mellan min far och mig blivit... ansträngd.\n" +
 
-                    "Däremot kan jag inte förneka att både butlern och hushållerskan vid flera tillfällen låtit sin bitterhet över honom komma till uttryck när de trott sig vara ensamma.\n\n" +
+                    "Däremot kan jag inte förneka att både butlern och hushållerskan vid flera tillfällen låtit sin bitterhet över honom komma till uttryck när de trott sig vara ensamma.\n" +
 
-                    "Vad jag själv tror? Självmord.\n\n" +
+                    "Vad jag själv tror? Självmord.\n" +
 
-                    "Jag råkade överhöra några av polismännen tala om ett brev som påträffats i biblioteket. Ett självmordsbrev, om jag förstod saken rätt.\n\n" +
+                    "Jag råkade överhöra några av polismännen tala om ett brev som påträffats i biblioteket. Ett självmordsbrev, om jag förstod saken rätt.\n" +
 
-                    "Min farbror började bli en gammal man. Hälsan svek honom allt mer för varje månad som gick, och relationerna inom hushållet hade länge varit ansträngda.\n\n" +
+                    "Min farbror började bli en gammal man. Hälsan svek honom allt mer för varje månad som gick, och relationerna inom hushållet hade länge varit ansträngda.\n" +
 
                     "Det är en tragisk historia, sir. Men jag fruktar att hans dalande liv till sist blev för mycket för farbror.\"",
 
@@ -206,23 +206,23 @@ namespace QuestGameDetective.Infrastructure.Data.Seed.CaseSeeds
                 SuspectImg = "housekeeper.png",
 
                 Statement =
-                    "Förhörsrapport:\n\n" +
+                    "Förhörsrapport:\n" +
 
-                    "\"Jag förstår fortfarande inte varför jag behövde föras hit till polisstationen. Folk kommer börja tala, det är jag övertygad om.\n\n" +
+                    "\"Jag förstår fortfarande inte varför jag behövde föras hit till polisstationen. Folk kommer börja tala, det är jag övertygad om.\n" +
 
-                    "Ja, Sir Cedric kunde stundtals vara en besvärlig herre att arbeta för, men det betyder inte att jag önskade livet ur honom.\n\n" +
+                    "Ja, Sir Cedric kunde stundtals vara en besvärlig herre att arbeta för, men det betyder inte att jag önskade livet ur honom.\n" +
 
-                    "Jag var förargad över honom de senaste veckorna. Han klagade ständigt på min mat och påstod att den gjorde honom sjuk. Fullständigt trams, om ni frågar mig.\n\n" +
+                    "Jag var förargad över honom de senaste veckorna. Han klagade ständigt på min mat och påstod att den gjorde honom sjuk. Fullständigt trams, om ni frågar mig.\n" +
 
-                    "Något skott hörde jag inte, nej. Men jag får medge att jag inte befann mig i huset under hela aftonen.\n\n" +
+                    "Något skott hörde jag inte, nej. Men jag får medge att jag inte befann mig i huset under hela aftonen.\n" +
 
-                    "Vid halv sju höll jag på att förbereda kvällsmaten när jag råkade välta en hel kanna lingondricka över mina kläder.\n\n" +
+                    "Vid halv sju höll jag på att förbereda kvällsmaten när jag råkade välta en hel kanna lingondricka över mina kläder.\n" +
 
-                    "Så mellan halv sju och åtta befann jag mig hemma för att byta om. Något jag skäms en aning över att behöva erkänna.\n\n" +
+                    "Så mellan halv sju och åtta befann jag mig hemma för att byta om. Något jag skäms en aning över att behöva erkänna.\n" +
 
-                    "Och om ni frågar mig har det inte varit annat än bekymmer sedan den där slyngeln Edward flyttade in.\n\n" +
+                    "Och om ni frågar mig har det inte varit annat än bekymmer sedan den där slyngeln Edward flyttade in.\n" +
 
-                    "Tidigare under dagen var även Sir Victor Hawthorne där, Lord Blackwoods affärspartner. När jag stod i trappan kunde jag inte undgå att höra hur de grälade i biblioteket.\n\n" +
+                    "Tidigare under dagen var även Sir Victor Hawthorne där, Lord Blackwoods affärspartner. När jag stod i trappan kunde jag inte undgå att höra hur de grälade i biblioteket.\n" +
 
                     "Hade jag varit i er sits, sir, hade jag tagit mig ett ordentligt samtal med honom också.\"",
 
@@ -250,25 +250,25 @@ namespace QuestGameDetective.Infrastructure.Data.Seed.CaseSeeds
                 SuspectImg = "workPartner.png",
 
                 Statement =
-                    "Polisens anteckningar:\n\n" +
+                    "Polisens anteckningar:\n" +
 
-                    "\"Ja, det stämmer, konstapeln. Jag besökte Cedric tidigare under dagen. Jag tittade förbi på väg hem från arbetet.\n\n" +
+                    "\"Ja, det stämmer, konstapeln. Jag besökte Cedric tidigare under dagen. Jag tittade förbi på väg hem från arbetet.\n" +
 
-                    "Cedric brukade emellanåt arbeta hemifrån efter lunchtid, och först tänkte jag att den diskussion vi haft tidigare under dagen kunde vänta till efter helgen.\n\n" +
+                    "Cedric brukade emellanåt arbeta hemifrån efter lunchtid, och först tänkte jag att den diskussion vi haft tidigare under dagen kunde vänta till efter helgen.\n" +
 
-                    "Men jag ändrade mig under hemvägen. Cedric ville att vi skulle erbjuda arbete åt hans förbaskade brorson, och det hade jag inga som helst intentioner att gå med på.\n\n" +
+                    "Men jag ändrade mig under hemvägen. Cedric ville att vi skulle erbjuda arbete åt hans förbaskade brorson, och det hade jag inga som helst intentioner att gå med på.\n" +
 
-                    "Inte nog med att jag tvivlar starkt på att unge Edward någonsin utfört en ärlig dags arbete i hela sitt liv — det hade dessutom skapat problem inom firman.\n\n" +
+                    "Inte nog med att jag tvivlar starkt på att unge Edward någonsin utfört en ärlig dags arbete i hela sitt liv — det hade dessutom skapat problem inom firman.\n" +
 
-                    "Jag har nio barn, konstapeln. Tjugotvå barnbarn, varav åtminstone femton är i arbetsför ålder. Hur hade det sett ut om jag började dela ut tjänster enbart på grund av släktskap?\n\n" +
+                    "Jag har nio barn, konstapeln. Tjugotvå barnbarn, varav åtminstone femton är i arbetsför ålder. Hur hade det sett ut om jag började dela ut tjänster enbart på grund av släktskap?\n" +
 
-                    "Firman hade gått under innan året var slut, och det sade jag också till Cedric.\n\n" +
+                    "Firman hade gått under innan året var slut, och det sade jag också till Cedric.\n" +
 
-                    "När allt väl lagts fram medgav han faktiskt att jag hade en poäng.\n\n" +
+                    "När allt väl lagts fram medgav han faktiskt att jag hade en poäng.\n" +
 
-                    "Självmord, säger ni? Nej... det har jag svårt att tro.\n\n" +
+                    "Självmord, säger ni? Nej... det har jag svårt att tro.\n" +
 
-                    "Cedric var sitt vanliga reserverade jag. Något trött kanske, men fullt samlad. Vi skakade hand, sade att vi skulle ses igen på måndag, och därefter gick jag hem.\n\n" +
+                    "Cedric var sitt vanliga reserverade jag. Något trött kanske, men fullt samlad. Vi skakade hand, sade att vi skulle ses igen på måndag, och därefter gick jag hem.\n" +
 
                     "Redan före klockan sex var jag tillbaka i mitt eget hus.\"",
 
