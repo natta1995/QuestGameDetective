@@ -41,7 +41,8 @@ public class UpdateQuestResultCommandHandler
         {
             IsCorrect = isCorrect,
             Result = quest.Result,
-            SolutionText = quest.MurderCase.SolutionText
+            SolutionText = quest.MurderCase.SolutionText,
+            SolutionClues = quest.MurderCase.SolutionClues
         };
     }
 }

@@ -9,5 +9,7 @@ namespace QuestGameDetective.Application.Dtos.Quest
         public QuestResult Result { get; set; }
 
         public string SolutionText { get; set; } = "";
+
+        public string SolutionClues { get; set; } = "";
     }
 }

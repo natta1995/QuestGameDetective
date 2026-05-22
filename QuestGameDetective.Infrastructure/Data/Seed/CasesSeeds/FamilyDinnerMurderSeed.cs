@@ -6,7 +6,8 @@ namespace QuestGameDetective.Infrastructure.Data.Seed.CaseSeeds
     public static class FamilyDinnerMurderSeed
     {
         public static readonly Guid CaseId =
-            Guid.Parse("44444444-4444-4444-4444-444444444444");
+           
+        Guid.Parse("33333333-3333-3333-3333-333333333333");
 
         public static readonly MurderCase Case = new()
         {
@@ -14,59 +15,86 @@ namespace QuestGameDetective.Infrastructure.Data.Seed.CaseSeeds
 
             Priority = CasePriority.High,
 
-            Title = "Familjemiddags mordet på Ravenshire Manor",
+            Title = "Familjemiddagsmordet på Ravenshire Manor",
 
             ShortSummary =
-                "Under en stillsam familjemiddag faller den yngsta dottern plötsligt död ner efter att ha druckit ur sitt vinglas.",
+                "Under en till synes stillsam familjemiddag faller den yngsta dottern plötsligt död ner efter att ha druckit ur sitt vinglas.",
 
             Victim = "Charlotte Ashbourne",
+
+            VictimAge = "23 år",
+
+            VictimJob = "Överklassdam",
+
+            VictimLifeSituation =
+                "Yngsta dottern i familjen Ashbourne. Levde ett skyddat liv på Ravenshire Manor men planerade i hemlighet att lämna familjens herrgård.",
 
             VictimImg = "youngsistervictim.png",
 
             Place =
-                "Charlotte Ashbourne avled vid middagsbordet i familjens herrgård strax efter att huvudrätten serverats.",
+                "Ravenshire Manor, strax utanför London.",
 
             CauseOfDeath =
                 "Akut arsenikförgiftning.",
 
             Weapon =
-                "Förgiftning - Arsenik blandat i offrets vinglas.",
+                "Arsenik blandat i offrets vinglas.",
 
             CrimeSceneImg = "familydinnercrime.png",
 
+            CrimeSceneImgText =
+                "Brottsplatsfotografi – Middagsbordet efter dödsfallet",
+
             ClueImg = "tablebedroom.png",
 
+            ClueImgText =
+                "Fotografi från Charlottes sovrum",
+
+            SecondClueImg = "charlottediary.png",
+
+            SecondClueImgText =
+                "Dagboks hittad under offrets säng",
+
             CrimeSceneDescription =
-                "Den vanliga söndagsmiddagen ägde rum i den stora matsalen på Ravenshire Manor.\n\n" +
+                "Den traditionella söndagsmiddagen hölls i den stora matsalen på Ravenshire Manor.\n\n" +
 
-                "När huvudrätten serverades tog Charlotte Ashbourne några klunkar ur sitt vinglas innan hon plötsligt tappade andan och föll ihop över bordet.\n\n" +
+                "När huvudrätten serverades tog Charlotte Ashbourne några klunkar ur sitt vinglas innan hon plötsligt började hosta våldsamt och föll ihop över bordet.\n\n" +
 
-                "Familjens läkare, som anlände kort därefter, kunde snabbt konstatera att döden orsakats av arsenik.\n\n" +
+                "Familjens läkare anlände kort därefter och kunde endast konstatera att den unga kvinnan redan var avliden.\n\n" +
 
-                "Polisen fann inga tecken på att giftet funnits i maten. Endast offrets vinglas innehöll spår av arsenik.\n\n" +
+                "Vid senare undersökning återfanns tydliga spår av arsenik i offrets vinglas. Inga övriga glas eller maträtter visade däremot tecken på förgiftning.\n\n" +
 
-                "Vid bordet satt offrets föräldrar, hennes två systrar, hennes bror, offrets fästman samt systern Eleanors fästman, som var sen till middagen.\n\n" +
+                "Vid middagsbordet befann sig offrets föräldrar, hennes två systrar, brodern Jonathan Ashbourne, Charlottes fästman Thomas Fairford samt systern Helenas fästman Julian Pembroke, som anlände sent till middagen.\n\n" +
 
-                "Flera av de medverkande vid bordet kunde strykas som misstänkta direkt på plats.\n\n" +
-
-                "Ingen i familjen beskriver middagen som särskilt konfliktfylld — men nästan samtliga medger att relationen till Charlotte stundtals varit komplicerad.",
+                "Trots familjens försök att beskriva relationerna som goda framkommer det snabbt under förhören att flera familjemedlemmar hyst stark bitterhet gentemot Charlotte under en längre tid.",
 
             SolutionText =
-                "Charlotte Ashbourne mördades av sin syster Eleanor Ashbourne.\n\n" +
+            "Charlotte Ashbourne mördades av sin syster Helena Ashbourne.\n\n" +
 
-                "Eleanor hade levt ett helt liv i skuggan av sin syster, som alltid varit familjens favorit och faderns ögonsten.\n\n" +
+            "Under större delen av sitt liv hade Helena levt i skuggan av sin yngre syster, som ständigt behandlades som familjens favorit.\n\n" +
 
-                "Men när Charlotte inledde en relation med Arthur och planerade att rymma ihop, fick Eleanor nog och inskaffade arsenik.\n\n" +
+            "När Charlotte dessutom planerade att lämna Ravenshire Manor tillsammans med Thomas Fairford växte Helenas bitterhet till hat.\n\n" +
 
-                "På Eleanors finger upptäcktes en ring med ett dolt fack där hon förvarat giftet. Redan innan middagen smet hon förbi och hällde pulvret i systerns glas.\n\n" +
+            "Helena hade sedan flera veckor tillbaka införskaffat arsenik som hon gömde i ett dolt fack i sin ring.\n\n" +
 
-                "Charlotte drack av vinet först när köträtten serverades.\n\n" +
+            "Under middagen lämnade hon bordet under förevändning att hämta mer vin och passade då på att hälla giftet i Charlottes glas.\n\n" +
 
-                "I Charlottes rum syntes tydliga tecken på att hon planerat att lämna familjens herrgård.\n\n" +
+            "Charlotte drack först av vinet när huvudrätten serverades.\n\n" +
 
-                "På Arthurs skjortkrage återfanns spår av samma röda läppstift som Charlotte bar under kvällen.\n\n" +
+            "I Charlottes sovrum återfanns en halvpackad resväska, privata brev samt dagboksanteckningar som tydligt visade att hon planerade att rymma följande morgon.\n\n" +
 
-                "Under det avslutande förhöret bröt Eleanor slutligen samman och erkände mordet.",
+            "Under det avslutande förhöret bröt Helena slutligen samman och erkände mordet.",
+
+                    SolutionClues =
+            "• Endast Charlottes vinglas innehöll spår av arsenik.\n\n" +
+
+            "• Helena Ashbourne lämnade bordet ensam under middagen under förevändning att hämta mer vin.\n\n" +
+
+            "• På fotografiet från Charlottes sovrum syns en halvpackad resväska samt ett porträtt av Thomas Fairford.\n\n" +
+
+            "• Dagboksanteckningar återfunna i offrets rum visar att Charlotte planerade att bryta sin förlovning och rymma följande morgon.\n\n" +
+
+            "• På Helenas ring upptäcktes senare ett dolt fack innehållande rester av arsenik.",
 
             KillerIndex = 1
         };
@@ -76,118 +104,134 @@ namespace QuestGameDetective.Infrastructure.Data.Seed.CaseSeeds
             new Suspect
             {
                 Id = Guid.Parse("dddddddd-1111-1111-1111-111111111111"),
-
                 MurderCaseId = CaseId,
-
                 Name = "Jonathan Ashbourne",
-
+                Age = "31 år",
+                Job = "Arvtagare",
+                LifeSituation =
+                    "Spelberoende och svårt skuldsatt efter flera misslyckade investeringar.",
                 Role = "Brodern",
-
                 SuspectImg = "dinnerbrother.png",
 
                 Statement =
                     "Förhörsrapport:\n\n" +
 
-                    "\"Charlotte och jag stod aldrig varandra särskilt nära. Hon var yngst. Kom undan med allt. Allt hon pekade på skulle hon ha.\n\n" +
+                    "\"Charlotte och jag stod aldrig varandra särskilt nära.\n\n" +
 
-                    "Hon har alltid varit mors favorit, och far skall vi inte prata om. Han dyrkade marken hon gick på. Jag vill inte ens veta hur mycket pengar han slängt på henne.\n\n" +
+                    "Hon var yngst och kom undan med precis allting.\n\n" +
 
-                    "Mina föräldrar är redan gamla och sjuka, detta kommer väl ta livet av dem.\n\n" +
+                    "Mor avgudade henne och far behandlade henne som om hon vore någon sorts prinsessa.\n\n" +
 
-                    "Jag? Mörda henne? Vad skulle jag vinna på det? Förresten reste jag mig aldrig från bordet under middagen och jag rörde inte hennes glas.\n\n" +
+                    "Jag vill inte ens veta hur mycket pengar som lagts på hennes nöjen genom åren.\n\n" +
 
-                    "Ja, jag spelar ibland. Men det betyder inte att jag är en mördare.\"",
+                    "Men tro inte att det betyder att jag önskade henne död.\n\n" +
 
+                    "Mina föräldrar är gamla och redan svaga. Det här kommer ta livet av dem.\n\n" +
+
+                    "Jag reste mig aldrig från bordet under middagen och jag rörde aldrig hennes glas.\n\n" +
+
+                    "Och ja, jag spelar ibland. Men spelare och mördare är inte samma sak, konstapeln.\"",
 
                 InInvestigatorsNotes =
-                    "Jonathan uppträder arrogant men verkar samtidigt genuint chockad över systerns död."
+                    "Jonathan uppträder arrogant men verkar samtidigt genuint skakad över systerns död."
             },
 
-            new Suspect // KILLER
+            new Suspect
             {
                 Id = Guid.Parse("dddddddd-2222-2222-2222-222222222222"),
-
                 MurderCaseId = CaseId,
-
-                Name = "Eleanor Ashbourne",
-
+                Name = "Helena Ashbourne",
+                Age = "27 år",
+                Job = "Överklassdam",
+                LifeSituation =
+                    "Bor fortfarande kvar på familjens herrgård och lever under sin fars strikta kontroll.",
                 Role = "Mellersta systern",
-
                 SuspectImg = "sister1.png",
 
                 Statement =
                     "Förhörsrapport:\n\n" +
 
-                    "\"Charlotte hade ett sätt att alltid få allt att handla om henne.\n\n" +
+                    "\"Charlotte hade ett märkligt sätt att få hela världen att kretsa kring henne.\n\n" +
 
-                    "Mor och far avgudade henne nästan. Det är nästan skrattretande hur de kunde se henne som någon slags ängel.\n\n" +
+                    "Mor och far såg henne nästan som någon sorts liten ängel.\n\n" +
+
+                    "Det är nästan skrattretande när man tänker på det.\n\n" +
 
                     "Men trots våra meningsskiljaktigheter var hon fortfarande min syster.\n\n" +
 
-                    "Jag gick visserligen bort mot serveringsbordet under middagen men bara för att hämta mer vin.\n\n" +
+                    "Ja, jag gick bort mot serveringsbordet under middagen men endast för att hämta mer vin.\n\n" +
 
-                    "När jag kom tillbaka började far hosta igen och sedan… sedan föll Charlotte ihop.\"",
+                    "När jag kom tillbaka började far hosta igen och sedan… sedan föll Charlotte ihop.\n\n" +
 
+                    "Allting gick så fruktansvärt fort.\"",
 
                 InInvestigatorsNotes =
-                    "Eleanor framstår som känslomässigt instabil men saklig. Hon mjuknar när hon pratar om sin far."
+                    "Helena framstår som känslomässigt instabil men försöker hela tiden behålla kontrollen över sig själv."
             },
 
             new Suspect
             {
                 Id = Guid.Parse("dddddddd-3333-3333-3333-333333333333"),
-
                 MurderCaseId = CaseId,
-
-                Name = "Thomas Whitmore",
-
+                Name = "Thomas Fairford",
+                Age = "29 år",
+                Job = "Banktjänsteman",
+                LifeSituation =
+                    "Förlovad med Charlotte Ashbourne men relationen beskrivs som turbulent av flera familjemedlemmar.",
                 Role = "Fästmannen",
-
                 SuspectImg = "tablefiance.png",
 
                 Statement =
                     "Förhörsrapport:\n\n" +
 
-                    "\"Charlotte och jag skulle gifta oss innan årets slut, det var tanken i alla fall.\n\n" +
+                    "\"Charlotte och jag planerade att gifta oss innan årets slut.\n\n" +
 
-                    "Vi har grälat en del det sista. Jag tycker hon trycker bort mig. Ibland vet jag inte vad hon vill.\n\n" +
+                    "Åtminstone var det planen.\n\n" +
 
-                    "Men jag älskade verkligen Charlotte. Jag vet inte om jag kan leva vidare utan henne i denna värld. Jag skulle aldrig göra henne illa.\n\n" +
+                    "Vi har haft våra gräl den senaste tiden men jag älskade henne verkligen.\n\n" +
 
-                    "Jag satt intill henne hela middagen. Men jag såg ingen lägga något i hennes glas. Men det är ju inte heller sådant man tänker på i vanliga fall.\n\n" +
+                    "Jag satt intill henne under hela middagen och jag såg ingen röra hennes glas.\n\n" +
 
-                    "Jag vet bara att hon plötsligt började hosta. Det gick så fort och sedan var hon bara död.\"",
+                    "Men sådant är kanske heller inget man lägger märke till under en vanlig familjemiddag.\n\n" +
 
+                    "Jag vet bara att hon plötsligt började hosta och sedan… sedan var hon borta.\n\n" +
+
+                    "Jag skulle aldrig kunna skada Charlotte. Aldrig.\"",
 
                 InInvestigatorsNotes =
-                    "Thomas verkar uppriktigt skakad men flera familjemedlemmar beskriver relationen som mindre lycklig än han själv påstår."
+                    "Thomas verkar uppriktigt förtvivlad men flera familjemedlemmar beskriver relationen som betydligt mindre lycklig än han själv påstår."
             },
 
             new Suspect
             {
                 Id = Guid.Parse("dddddddd-4444-4444-4444-444444444444"),
-
                 MurderCaseId = CaseId,
-
                 Name = "Margaret Ashbourne",
-
+                Age = "35 år",
+                Job = "Överklassdam",
+                LifeSituation =
+                    "Äldsta systern i familjen. Har aldrig gift sig och fungerar ofta som medlare mellan familjemedlemmarna.",
                 Role = "Äldre systern",
-
                 SuspectImg = "bigsister2.png",
 
                 Statement =
                     "Förhörsrapport:\n\n" +
 
-                    "\"Jag vill bara att det här skall vara över. Charlotte kunde vara hård men hon förtjänade inte det här.\n\n" +
+                    "\"Jag vill bara att det här skall vara över.\n\n" +
 
-                    "Bortskämd? Ja, det kan man väl säga. Hon fick vad hon pekade på. Men det var mer mina föräldrars fel än hennes i så fall.\n\n" +
+                    "Charlotte kunde vara svår ibland men hon förtjänade inte detta.\n\n" +
 
-                    "Jag såg Eleanor lämna bordet en kort stund. Hon sade att hon skulle hämta vin men jag tror snarare att hon var upprörd och hade svårt att sitta still.\n\n" +
+                    "Bortskämd? Ja, kanske.\n\n" +
 
-                    "Hennes fästman Arthur skulle varit med, men han var sen. Inte förrän vi börjat äta huvudrätten kom han in genom dörren.\n\n" +
+                    "Men det var mer mors och fars fel än hennes.\n\n" +
 
-                    "Ingen av mina systrar tycks vara särskilt lyckliga i sina kärleksrelationer. Och folk frågar varför jag vill förbli ogift.\"",
+                    "Jag såg Helena lämna bordet under middagen. Hon sade att hon skulle hämta mer vin men hon verkade snarare upprörd.\n\n" +
 
+                    "Helenas fästman Julian anlände dessutom sent till middagen.\n\n" +
+
+                    "Ingen av mina systrar tycks ha varit särskilt lyckliga.\n\n" +
+
+                    "Och folk frågar fortfarande varför jag valt att förbli ogift.\"",
 
                 InInvestigatorsNotes =
                     "Margaret verkar nervös men hennes berättelse förblir konsekvent genom hela utredningen."
