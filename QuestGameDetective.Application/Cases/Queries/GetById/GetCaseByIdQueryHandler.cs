@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using AutoMapper;
 using QuestGameDetective.Application.Dtos.Case;
 using QuestGameDetective.Domain.Entities;
 using QuestGameDetective.Domain.Interfaces;
@@ -9,10 +10,14 @@ public class GetCaseByIdQueryHandler
     : IRequestHandler<GetCaseByIdQuery, CaseReadDto?>
 {
     private readonly IGenericRepository<MurderCase> _repository;
+    private readonly IMapper _mapper;
 
-    public GetCaseByIdQueryHandler(IGenericRepository<MurderCase> repository)
+    public GetCaseByIdQueryHandler(
+      IGenericRepository<MurderCase> repository,
+      IMapper mapper)
     {
         _repository = repository;
+        _mapper = mapper;
     }
 
     public async Task<CaseReadDto?> Handle(
@@ -24,22 +29,6 @@ public class GetCaseByIdQueryHandler
         if (murderCase == null)
             return null;
 
-        return new CaseReadDto
-        {
-            Id = murderCase.Id,
-            Title = murderCase.Title,
-            ShortSummary = murderCase.ShortSummary,
-            Victim = murderCase.Victim,
-            Place = murderCase.Place,
-            CauseOfDeath = murderCase.CauseOfDeath,
-            Weapon = murderCase.Weapon,
-            CrimeSceneDescription = murderCase.CrimeSceneDescription,
-            Priority = murderCase.Priority,
-            Suspects = murderCase.Suspects.Select(s => new SuspectDto
-            {
-                Name = s.Name,
-                Statement = s.Statement
-            }).ToList()
-        };
+        return _mapper.Map<CaseReadDto>(murderCase);
     }
 }
