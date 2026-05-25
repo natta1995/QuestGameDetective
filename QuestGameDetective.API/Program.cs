@@ -12,6 +12,8 @@ using QuestGameDetective.Infrastructure.Data;
 using QuestGameDetective.Infrastructure.Repositories;
 using QuestGameDetective.Infrastructure.Repository;
 using System.Text;
+using MediatR;
+using QuestGameDetective.Application.Common.Behaviors;
 
 
 namespace QuestGameDetective.API
@@ -77,6 +79,7 @@ namespace QuestGameDetective.API
             builder.Services.AddScoped<IQuestRepository, QuestRepository>();
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
 
             builder.Services.AddAutoMapper(cfg =>
             {
