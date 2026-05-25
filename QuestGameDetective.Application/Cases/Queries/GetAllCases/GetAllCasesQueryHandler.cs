@@ -1,16 +1,18 @@
 ﻿
 using MediatR;
 using QuestGameDetective.Application.Dtos.Case;
+using QuestGameDetective.Domain.Entities;
 using QuestGameDetective.Domain.Interfaces;
+
 
 namespace QuestGameDetective.Application.Cases.Queries.GetAllCases;
 
 public class GetAllCasesQueryHandler
     : IRequestHandler<GetAllCasesQuery, List<CaseReadDto>>
 {
-    private readonly IMurderCaseRepository _repository;
+    private readonly IGenericRepository<MurderCase> _repository;
 
-    public GetAllCasesQueryHandler(IMurderCaseRepository repository)
+    public GetAllCasesQueryHandler(IGenericRepository<MurderCase> repository)
     {
         _repository = repository;
     }
@@ -19,7 +21,7 @@ public class GetAllCasesQueryHandler
         GetAllCasesQuery request,
         CancellationToken cancellationToken)
     {
-        var cases = await _repository.GetAllAsync();
+        var cases = await _repository.GetAllWithIncludesAsync("Suspects");
 
         return cases.Select(c => new CaseReadDto
         {
