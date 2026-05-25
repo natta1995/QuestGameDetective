@@ -75,6 +75,7 @@ namespace QuestGameDetective.API
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IQuestRepository, QuestRepository>();
             builder.Services.AddScoped<ITokenService, TokenService>();
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             // Services
             builder.Services.AddScoped<TokenService>();
