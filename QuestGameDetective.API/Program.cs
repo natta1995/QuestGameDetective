@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using QuestGameDetective.API.Data.Seed;
 using QuestGameDetective.API.Services;
 using QuestGameDetective.Application.Cases.Queries.GetAllCases;
+using QuestGameDetective.Application.Common.Mappings;
 using QuestGameDetective.Domain.Entities;
 using QuestGameDetective.Domain.Interfaces;
 using QuestGameDetective.Infrastructure.Data;
@@ -76,6 +77,11 @@ namespace QuestGameDetective.API
             builder.Services.AddScoped<IQuestRepository, QuestRepository>();
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+            builder.Services.AddAutoMapper(cfg =>
+            {
+                cfg.AddProfile<MappingProfile>();
+            });
 
             // Services
             builder.Services.AddScoped<TokenService>();
